@@ -1721,6 +1721,39 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 75,
+      "type": "multi",
+      "content": "数据安全关键（重要）岗位人员包含以下哪些人员。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "承载重要数据和核心数据的系统，其维护人员;",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "具有对10万条及以上一般数据/1万条及以上客户个人信息/1000条及以上特定人员信息进行批量修改、导出、删除操作权 限的人员;",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "负责对A、B中相关操作进行审批和定期安全审计的人员;",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "各系统数据加解密密钥保管人员;",
+          "correct": true
+        },
+        {
+          "letter": "E",
+          "text": "网信安部门及各中心、业务单元认定的其他人员",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D、E"
     }
   ]
 }
