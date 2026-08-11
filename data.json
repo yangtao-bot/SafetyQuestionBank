@@ -1721,34 +1721,6 @@
         }
       ],
       "answer": "A"
-    },
-    {
-      "num": 75,
-      "type": "single",
-      "content": "问问",
-      "options": [
-        {
-          "letter": "A",
-          "text": "为",
-          "correct": true
-        },
-        {
-          "letter": "B",
-          "text": "三",
-          "correct": false
-        },
-        {
-          "letter": "C",
-          "text": "所代表",
-          "correct": false
-        },
-        {
-          "letter": "D",
-          "text": "海南经济",
-          "correct": false
-        }
-      ],
-      "answer": "A"
     }
   ]
 }
