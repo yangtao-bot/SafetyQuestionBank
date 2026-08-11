@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据安全考试题库统计表</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    padding: 24px;
+    line-height: 1.7;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #1a3a5c;
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #3b82f6;
+  }
+  .summary {
+    display: flex; gap: 12px; justify-content: center;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .summary-card {
+    background: #fff; border-radius: 8px; padding: 10px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08); text-align: center; min-width: 120px;
+  }
+  .summary-card .num { font-size: 22px; font-weight: 700; color: #3b82f6; }
+  .summary-card .label { font-size: 13px; color: #64748b; }
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .filter-bar button {
+    padding: 7px 16px; border: 1px solid #cbd5e1; background: #fff;
+    border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.2s; color: #475569;
+  }
+  .filter-bar button:hover { border-color: #3b82f6; color: #3b82f6; }
+  .filter-bar button.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+  .search-box {
+    flex: 1; min-width: 200px; padding: 7px 12px;
+    border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;
+  }
+  .search-box:focus { outline: none; border-color: #3b82f6; }
+  table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-size: 14px;
+  }
+  thead { background: #1e3a5f; }
+  thead th {
+    color: #fff; padding: 12px 10px; text-align: left; font-weight: 600; font-size: 13px; white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid #e8edf3; transition: background 0.15s; }
+  tbody tr:hover { background: #eff6ff; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 10px 10px; vertical-align: top; }
+  .q-num { font-weight: 700; color: #3b82f6; white-space: nowrap; }
+  .q-type { white-space: nowrap; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 12px; font-weight: 600; }
+  .badge-single { background: #dbeafe; color: #1e40af; }
+  .badge-multi { background: #fef3c7; color: #92400e; }
+  .badge-bool { background: #dcfce7; color: #166534; }
+  .q-content { white-space: pre-wrap; word-break: break-word; }
+  .q-content .opt { display: block; margin-top: 3px; }
+  .q-content .opt-correct { color: #166534; font-weight: 600; }
+  .q-content .opt-correct::after { content: " \2713"; color: #16a34a; }
+  .answer { color: #dc2626; font-weight: 700; white-space: nowrap; }
+  .footer { text-align: center; margin-top: 20px; color: #94a3b8; font-size: 12px; }
+  .loading { text-align: center; padding: 40px; color: #94a3b8; font-size: 14px; }
+
+  /* 删除模式 */
+  .delete-banner {
+    display: none; background: #fee2e2; border: 1px solid #ef4444;
+    border-radius: 6px; padding: 8px 16px; margin-bottom: 12px;
+    color: #b91c1c; font-size: 13px; font-weight: 600;
+    align-items: center; justify-content: space-between;
+  }
+  .delete-banner.show { display: flex; }
+  .delete-banner .hint { font-weight: 400; color: #7f1d1d; font-size: 12px; }
+  .btn-delete {
+    display: none; background: #ef4444; color: #fff; border: none;
+    border-radius: 50%; width: 26px; height: 26px; font-size: 16px;
+    cursor: pointer; line-height: 1; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.15s;
+  }
+  .btn-delete:hover { background: #dc2626; }
+  body.delete-mode .btn-delete { display: flex; }
+  body.delete-mode tbody tr:not(.insert-row):hover { background: #fef2f2; }
+  .del-cell { width: 40px; text-align: center; }
+
+  /* 插入行 */
+  .insert-row td { padding: 0 !important; height: 0; border: none !important; background: transparent; transition: height 0.15s; }
+  .insert-bar {
+    height: 0; overflow: hidden; transition: height 0.15s; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .insert-row:hover .insert-bar, .insert-row.active .insert-bar { height: 34px; }
+  .insert-bar::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed #3b82f6; }
+  .insert-bar span {
+    background: #3b82f6; color: #fff; border-radius: 12px; padding: 2px 14px;
+    font-size: 12px; font-weight: 600; position: relative; z-index: 1; white-space: nowrap;
+  }
+  .insert-bar span::before { content: "+ "; }
+
+  /* 弹窗 */
+  .modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 1000; justify-content: center;
+    align-items: flex-start; padding-top: 40px; overflow-y: auto;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    width: 680px; max-width: 95vw; max-height: 90vh; overflow-y: auto; margin-bottom: 40px;
+  }
+  .modal-header { padding: 16px 24px; border-bottom: 1px solid #e8edf3; display: flex; justify-content: space-between; align-items: center; }
+  .modal-header h2 { font-size: 18px; color: #1a3a5c; }
+  .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8; padding: 0 4px; line-height: 1; }
+  .modal-close:hover { color: #dc2626; }
+  .modal-body { padding: 20px 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-weight: 600; font-size: 13px; color: #475569; margin-bottom: 6px; }
+  .form-group textarea, .form-group input[type="text"], .form-group input[type="password"], .form-group select {
+    width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; font-size: 14px; font-family: inherit; color: #2c3e50;
+  }
+  .form-group textarea { resize: vertical; min-height: 60px; }
+  .form-group textarea:focus, .form-group input:focus, .form-group select:focus { outline: none; border-color: #3b82f6; }
+  .type-selector { display: flex; gap: 8px; }
+  .type-selector label { flex: 1; text-align: center; cursor: pointer; padding: 8px 0; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: #64748b; transition: all 0.15s; margin: 0; }
+  .type-selector input { display: none; }
+  .type-selector label:has(input:checked) { border-color: #3b82f6; background: #eff6ff; color: #1e40af; }
+  .options-container { display: flex; flex-direction: column; gap: 8px; }
+  .option-input-row { display: flex; align-items: center; gap: 8px; }
+  .option-input-row .opt-letter { font-weight: 700; color: #3b82f6; width: 24px; text-align: center; font-size: 14px; flex-shrink: 0; }
+  .option-input-row input[type="text"] { flex: 1; border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px; font-size: 13px; font-family: inherit; }
+  .option-input-row input[type="text"]:focus { outline: none; border-color: #3b82f6; }
+  .option-input-row input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; }
+  .option-input-row .opt-correct-label { font-size: 12px; color: #16a34a; font-weight: 600; white-space: nowrap; }
+  .option-input-row .btn-remove-opt { background: #fee2e2; color: #dc2626; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 26px; height: 26px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .option-input-row .btn-remove-opt:hover { background: #fecaca; }
+  .btn-add-option { align-self: flex-start; background: #f1f5f9; border: 1px dashed #94a3b8; border-radius: 6px; padding: 6px 16px; cursor: pointer; font-size: 13px; color: #64748b; }
+  .btn-add-option:hover { background: #e2e8f0; border-color: #64748b; }
+  .modal-footer { padding: 16px 24px; border-top: 1px solid #e8edf3; display: flex; justify-content: flex-end; gap: 10px; }
+  .modal-footer button { padding: 8px 24px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; border: none; }
+  .btn-cancel { background: #f1f5f9; color: #64748b; }
+  .btn-cancel:hover { background: #e2e8f0; }
+  .btn-insert { background: #3b82f6; color: #fff; }
+  .btn-insert:hover { background: #2563eb; }
+
+  /* 设置面板 */
+  .settings-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 1100; justify-content: center; align-items: flex-start; padding-top: 60px;
+  }
+  .settings-overlay.show { display: flex; }
+  .settings-panel {
+    background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    width: 520px; max-width: 95vw; overflow: hidden;
+  }
+  .settings-panel .panel-header { padding: 16px 24px; border-bottom: 1px solid #e8edf3; display: flex; justify-content: space-between; align-items: center; }
+  .settings-panel .panel-header h2 { font-size: 18px; color: #1a3a5c; }
+  .settings-panel .panel-body { padding: 20px 24px; }
+  .settings-panel .panel-footer { padding: 16px 24px; border-top: 1px solid #e8edf3; display: flex; justify-content: flex-end; gap: 10px; }
+  .settings-panel .panel-footer button { padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; border: none; }
+  .token-status { padding: 8px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; }
+  .token-status.has-token { background: #dcfce7; color: #166534; }
+  .token-status.no-token { background: #fef3c7; color: #92400e; }
+  .sync-info { font-size: 12px; color: #64748b; margin-top: 8px; line-height: 1.6; }
+  .sync-info a { color: #3b82f6; }
+  .save-indicator {
+    display: none; position: fixed; top: 12px; right: 12px; z-index: 1200;
+    padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15); transition: opacity 0.3s;
+  }
+  .save-indicator.show { display: block; }
+  .save-indicator.saving { background: #fef3c7; color: #92400e; }
+  .save-indicator.success { background: #dcfce7; color: #166534; }
+  .save-indicator.error { background: #fee2e2; color: #b91c1c; }
+
+  @media print {
+    body { background: #fff; padding: 10px; }
+    .filter-bar, .summary, .delete-banner, .settings-overlay, .save-indicator { display: none !important; }
+    .insert-row, .modal-overlay { display: none !important; }
+    .btn-delete { display: none !important; }
+    table { font-size: 12px; box-shadow: none; }
+    thead { background: #333 !important; -webkit-print-color-adjust: exact; }
+    tbody tr:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>数据安全考试题库统计表</h1>
+
+  <div class="summary">
+    <div class="summary-card"><div class="num" id="sumTotal">--</div><div class="label">总题数</div></div>
+    <div class="summary-card"><div class="num" id="sumSingle">--</div><div class="label">单选题</div></div>
+    <div class="summary-card"><div class="num" id="sumMulti">--</div><div class="label">多选题</div></div>
+    <div class="summary-card"><div class="num" id="sumBool">--</div><div class="label">判断题</div></div>
+    <div class="summary-card"><div class="num" id="sumScore">--</div><div class="label">总分</div></div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="active" onclick="filterType('all', this)">全部</button>
+    <button onclick="filterType('single', this)">单选题</button>
+    <button onclick="filterType('multi', this)">多选题</button>
+    <button onclick="filterType('bool', this)">判断题</button>
+    <button onclick="openInsertModal(-1)" style="padding:7px 16px;border:1px solid #3b82f6;background:#3b82f6;color:#fff;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;">+ 插入新题</button>
+    <input type="text" class="search-box" placeholder="搜索题目关键词…" oninput="searchTable(this.value)">
+  </div>
+
+  <div class="delete-banner" id="deleteBanner">
+    <span>删除模式已开启 — 点击题目右侧的红色按钮即可删除</span>
+    <span class="hint">再次输入 yangtao 或按 ESC 关闭</span>
+  </div>
+
+  <table id="quizTable">
+    <thead>
+      <tr>
+        <th style="width:50px;">题号</th>
+        <th style="width:70px;">题型</th>
+        <th>题目及选项（原文）</th>
+        <th style="width:120px;">正确答案</th>
+      </tr>
+    </thead>
+    <tbody id="quizTbody">
+      <tr><td colspan="4" class="loading">正在加载题库数据...</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer" id="footer"></div>
+</div>
+
+<!-- 保存状态提示 -->
+<div class="save-indicator" id="saveIndicator"></div>
+
+<!-- 插入题目弹窗 -->
+<div class="modal-overlay" id="insertModal" onclick="if(event.target===this)closeInsertModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>插入新题</h2>
+      <button class="modal-close" onclick="closeInsertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>插入位置</label>
+        <select id="insertPosition"></select>
+      </div>
+      <div class="form-group">
+        <label>题型</label>
+        <div class="type-selector">
+          <label><input type="radio" name="qType" value="single" checked><span>单选题</span></label>
+          <label><input type="radio" name="qType" value="multi"><span>多选题</span></label>
+          <label><input type="radio" name="qType" value="bool"><span>判断题</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>题目内容</label>
+        <textarea id="qText" placeholder="输入题目内容…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>选项（勾选正确答案）</label>
+        <div class="options-container" id="optionsContainer"></div>
+        <button class="btn-add-option" onclick="addOptionRow()">+ 添加选项</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeInsertModal()">取消</button>
+      <button class="btn-insert" onclick="confirmInsert()">插入题目</button>
+    </div>
+  </div>
+</div>
+
+<!-- 设置面板（隐藏，输入 yangtao 呼出） -->
+<div class="settings-overlay" id="settingsOverlay" onclick="if(event.target===this)closeSettings()">
+  <div class="settings-panel">
+    <div class="panel-header">
+      <h2>管理设置</h2>
+      <button class="modal-close" onclick="closeSettings()">&times;</button>
+    </div>
+    <div class="panel-body">
+      <div class="token-status" id="tokenStatus"></div>
+      <div class="form-group">
+        <label>GitHub Personal Access Token</label>
+        <input type="password" id="githubTokenInput" placeholder="ghp_xxxxxxxxxxxx">
+      </div>
+      <div class="sync-info" id="syncInfo">
+        <strong>获取 Token 方法：</strong><br>
+        1. 打开 <a href="https://github.com/settings/tokens?type=beta" target="_blank">GitHub Token 设置页</a><br>
+        2. 点 "Generate new token" → 选 "Fine-grained"<br>
+        3. Repository access 选 "Only select repositories" → 选 <code>SafetyQuestionBank</code><br>
+        4. Permissions → Repository permissions → Contents: <strong>Read and write</strong><br>
+        5. 生成后复制 token，粘贴到上方输入框<br>
+        <br>
+        Token 仅存在你当前浏览器中（localStorage），不会出现在源码里。
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="btn-cancel" onclick="closeSettings()">关闭</button>
+      <button class="btn-insert" onclick="saveToken()">保存 Token</button>
+      <button class="btn-cancel" onclick="removeToken()" style="background:#fee2e2;color:#dc2626;">移除 Token</button>
+      <button class="btn-insert" onclick="syncNow()" style="background:#16a34a;">立即同步到 GitHub</button>
+      <button class="btn-cancel" onclick="refreshFromGitHub()" style="background:#3b82f6;color:#fff;">从 GitHub 刷新</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 配置 =====
+var GITHUB_OWNER = 'yangtao-bot';
+var GITHUB_REPO = 'SafetyQuestionBank';
+var GITHUB_BRANCH = 'main';
+var DATA_FILE = 'data.json';
+
+// ===== 状态 =====
+var questions = [];
+var insertAfterIndex = -1;
+var deleteMode = false;
+var keyBuffer = '';
+var SECRET_CODE = 'yangtao';
+
+// ===== 初始化 =====
+window.addEventListener('DOMContentLoaded', init);
+
+async function init() {
+  await loadData();
+  renderTable();
+  buildInsertBars();
+  updateSummary();
+  updateTokenStatus();
+}
+
+// ===== 数据加载 =====
+async function loadData() {
+  // 优先从 data.json 加载最新数据（GitHub 上的版本）
+  try {
+    var resp = await fetch(DATA_FILE + '?t=' + Date.now());
+    var data = await resp.json();
+    questions = data.questions || [];
+    // 缓存到 localStorage，离线时可用
+    localStorage.setItem('quizData', JSON.stringify(questions));
+    return;
+  } catch(e) {
+    // data.json 加载失败，尝试 localStorage 缓存
+    var localData = localStorage.getItem('quizData');
+    if (localData) {
+      try {
+        questions = JSON.parse(localData);
+        return;
+      } catch(e2) {}
+    }
+    document.getElementById('quizTbody').innerHTML = '<tr><td colspan="4" class="loading">加载失败，请刷新重试</td></tr>';
+  }
+}
+
+// ===== 渲染表格 =====
+function renderTable() {
+  var tbody = document.getElementById('quizTbody');
+  tbody.innerHTML = '';
+  questions.forEach(function(q) {
+    tbody.appendChild(createQuestionRow(q));
+  });
+  refreshInsertBars();
+}
+
+function createQuestionRow(q) {
+  var typeMap = { single: 'badge-single', multi: 'badge-multi', bool: 'badge-bool' };
+  var labelMap = { single: '单选2分', multi: '多选2分', bool: '判断2分' };
+  var numStr = q.num < 10 ? '0' + q.num : '' + q.num;
+
+  var optsHtml = q.options.map(function(opt) {
+    var cls = opt.correct ? 'opt opt-correct' : 'opt';
+    return '<span class="' + cls + '">' + escapeHtml(opt.text) + '</span>';
+  }).join('\n');
+
+  var tr = document.createElement('tr');
+  tr.dataset.type = q.type;
+  tr.dataset.qid = q.num;
+  tr.innerHTML =
+    '<td class="q-num">' + numStr + '</td>' +
+    '<td class="q-type"><span class="badge ' + (typeMap[q.type] || 'badge-single') + '">' + (labelMap[q.type] || '单选2分') + '</span></td>' +
+    '<td class="q-content">' + escapeHtml(q.content) + '\n' + optsHtml + '</td>' +
+    '<td class="answer">' + escapeHtml(q.answer) + '</td>';
+  return tr;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ===== 筛选 & 搜索 =====
+function filterType(type, btn) {
+  document.querySelectorAll('.filter-bar button').forEach(function(b) {
+    if (b.textContent !== '+ 插入新题') b.classList.remove('active');
+  });
+  if (btn) btn.classList.add('active');
+  var rows = document.querySelectorAll('#quizTable tbody tr');
+  rows.forEach(function(row) {
+    if (row.classList.contains('insert-row')) { row.style.display = ''; return; }
+    if (type === 'all' || row.dataset.type === type) { row.style.display = ''; }
+    else { row.style.display = 'none'; }
+  });
+  refreshInsertBars();
+}
+
+function searchTable(keyword) {
+  keyword = keyword.trim().toLowerCase();
+  var rows = document.querySelectorAll('#quizTable tbody tr');
+  rows.forEach(function(row) {
+    if (row.classList.contains('insert-row')) { row.style.display = ''; return; }
+    var text = row.textContent.toLowerCase();
+    row.style.display = (keyword === '' || text.includes(keyword)) ? '' : 'none';
+  });
+  refreshInsertBars();
+}
+
+// ===== 插入行 =====
+function buildInsertBars() {
+  var tbody = document.getElementById('quizTbody');
+  var questionRows = Array.from(tbody.querySelectorAll('tr:not(.insert-row)'));
+  tbody.querySelectorAll('.insert-row').forEach(function(r) { r.remove(); });
+  questionRows.forEach(function(row, i) {
+    var insRow = document.createElement('tr');
+    insRow.className = 'insert-row';
+    insRow.innerHTML = '<td colspan="4"><div class="insert-bar"><span>插入题目</span></div></td>';
+    (function(idx) {
+      insRow.querySelector('.insert-bar').addEventListener('click', function() {
+        openInsertModal(idx);
+      });
+    })(i);
+    tbody.insertBefore(insRow, row);
+  });
+  var lastRow = document.createElement('tr');
+  lastRow.className = 'insert-row';
+  lastRow.innerHTML = '<td colspan="4"><div class="insert-bar"><span>插入题目</span></div></td>';
+  lastRow.querySelector('.insert-bar').addEventListener('click', function() {
+    openInsertModal(-1);
+  });
+  tbody.appendChild(lastRow);
+}
+
+function refreshInsertBars() {
+  var rows = Array.from(document.querySelectorAll('#quizTable tbody tr'));
+  for (var i = 0; i < rows.length; i++) {
+    if (!rows[i].classList.contains('insert-row')) continue;
+    var prev = null, next = null;
+    for (var j = i - 1; j >= 0; j--) { if (!rows[j].classList.contains('insert-row')) { prev = rows[j]; break; } }
+    for (var j = i + 1; j < rows.length; j++) { if (!rows[j].classList.contains('insert-row')) { next = rows[j]; break; } }
+    var prevVisible = prev && prev.style.display !== 'none';
+    var nextVisible = next && next.style.display !== 'none';
+    rows[i].style.display = (prevVisible || nextVisible || (!prev && nextVisible) || (!next && prevVisible)) ? '' : 'none';
+  }
+}
+
+// ===== 弹窗 =====
+function openInsertModal(afterIdx) {
+  insertAfterIndex = afterIdx;
+  var sel = document.getElementById('insertPosition');
+  sel.innerHTML = '';
+  questions.forEach(function(q, i) {
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = '在第 ' + (q.num < 10 ? '0' + q.num : q.num) + ' 题之后';
+    sel.appendChild(opt);
+  });
+  if (afterIdx === -1) { sel.value = questions.length - 1; }
+  else { sel.value = afterIdx; }
+  document.querySelector('input[name="qType"][value="single"]').checked = true;
+  document.getElementById('qText').value = '';
+  renderOptions('single');
+  document.getElementById('insertModal').classList.add('show');
+}
+
+function closeInsertModal() {
+  document.getElementById('insertModal').classList.remove('show');
+}
+
+// ===== 选项管理 =====
+function renderOptions(type) {
+  var container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  if (type === 'bool') {
+    addOptionRow('正确', false);
+    addOptionRow('错误', false);
+    document.querySelector('.btn-add-option').style.display = 'none';
+  } else {
+    addOptionRow('', false); addOptionRow('', false);
+    addOptionRow('', false); addOptionRow('', false);
+    document.querySelector('.btn-add-option').style.display = '';
+  }
+}
+
+function addOptionRow(text, isCorrect) {
+  var container = document.getElementById('optionsContainer');
+  var letters = 'ABCDEFGHIJ';
+  var idx = container.children.length;
+  var row = document.createElement('div');
+  row.className = 'option-input-row';
+  row.innerHTML =
+    '<span class="opt-letter">' + letters[idx] + '</span>' +
+    '<input type="text" placeholder="输入选项内容…" value="' + (text || '') + '">' +
+    '<input type="checkbox"' + (isCorrect ? ' checked' : '') + '>' +
+    '<span class="opt-correct-label">正确</span>' +
+    '<button class="btn-remove-opt" onclick="removeOptionRow(this)">&times;</button>';
+  container.appendChild(row);
+  updateOptionLetters();
+}
+
+function removeOptionRow(btn) {
+  var container = document.getElementById('optionsContainer');
+  if (container.children.length <= 2) return;
+  btn.parentElement.remove();
+  updateOptionLetters();
+}
+
+function updateOptionLetters() {
+  var rows = document.querySelectorAll('#optionsContainer .option-input-row');
+  var letters = 'ABCDEFGHIJ';
+  rows.forEach(function(row, i) { row.querySelector('.opt-letter').textContent = letters[i]; });
+}
+
+document.querySelectorAll('input[name="qType"]').forEach(function(radio) {
+  radio.addEventListener('change', function() { renderOptions(this.value); });
+});
+
+// ===== 确认插入 =====
+function confirmInsert() {
+  var type = document.querySelector('input[name="qType"]:checked').value;
+  var qText = document.getElementById('qText').value.trim();
+  if (!qText) { alert('请输入题目内容'); return; }
+
+  var optRows = document.querySelectorAll('#optionsContainer .option-input-row');
+  var options = [];
+  var correctLetters = [];
+  var letters = 'ABCDEFGHIJ';
+  optRows.forEach(function(row, i) {
+    var text = row.querySelector('input[type="text"]').value.trim();
+    if (!text) return;
+    var isCorrect = row.querySelector('input[type="checkbox"]').checked;
+    options.push({ letter: letters[i], text: text, correct: isCorrect });
+    if (isCorrect) correctLetters.push(letters[i]);
+  });
+  if (options.length < 2) { alert('至少需要2个选项'); return; }
+  if (correctLetters.length === 0) { alert('请至少勾选一个正确答案'); return; }
+
+  var maxNum = questions.length > 0 ? Math.max.apply(null, questions.map(function(q) { return q.num; })) : 0;
+  var newQ = { num: maxNum + 1, type: type, content: qText, options: options, answer: correctLetters.join('、') };
+
+  var posIdx = parseInt(document.getElementById('insertPosition').value, 10);
+  if (insertAfterIndex === -1) { questions.push(newQ); }
+  else { questions.splice(posIdx + 1, 0, newQ); }
+
+  saveToLocal();
+  renderTable();
+  buildInsertBars();
+  updateSummary();
+  if (deleteMode) injectDeleteButtons();
+  closeInsertModal();
+  saveToGitHub();
+}
+
+// ===== 更新统计 =====
+function updateSummary() {
+  var total = questions.length;
+  var single = questions.filter(function(q) { return q.type === 'single'; }).length;
+  var multi = questions.filter(function(q) { return q.type === 'multi'; }).length;
+  var bool = questions.filter(function(q) { return q.type === 'bool'; }).length;
+  document.getElementById('sumTotal').textContent = total;
+  document.getElementById('sumSingle').textContent = single;
+  document.getElementById('sumMulti').textContent = multi;
+  document.getElementById('sumBool').textContent = bool;
+  document.getElementById('sumScore').textContent = total * 2;
+  document.getElementById('footer').textContent =
+    '共 ' + total + ' 题 ｜ 单选 ' + single + ' 题 · 多选 ' + multi + ' 题 · 判断 ' + bool + ' 题 ｜ 每题 2 分，满分 ' + (total * 2) + ' 分';
+}
+
+// ===== 保存到 localStorage =====
+function saveToLocal() {
+  localStorage.setItem('quizData', JSON.stringify(questions));
+}
+
+// ===== 保存到 GitHub =====
+async function saveToGitHub() {
+  var token = localStorage.getItem('githubToken');
+  if (!token) { return; } // 没有 token 就只存本地
+
+  showSaveIndicator('saving', '正在同步到 GitHub...');
+
+  try {
+    // 1. 获取当前文件的 SHA
+    var resp = await fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + DATA_FILE + '?ref=' + GITHUB_BRANCH, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    var sha = null;
+    if (resp.ok) {
+      var fileData = await resp.json();
+      sha = fileData.sha;
+    }
+
+    // 2. PUT 更新文件
+    var content = btoa(unescape(encodeURIComponent(JSON.stringify({ questions: questions }, null, 2))));
+    var putResp = await fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + DATA_FILE, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Update quiz data - ' + new Date().toLocaleString('zh-CN'),
+        content: content,
+        sha: sha,
+        branch: GITHUB_BRANCH
+      })
+    });
+
+    if (putResp.ok) {
+      showSaveIndicator('success', '已同步到 GitHub');
+      setTimeout(function() { hideSaveIndicator(); }, 2000);
+    } else {
+      var err = await putResp.json();
+      showSaveIndicator('error', '同步失败: ' + (err.message || '未知错误'));
+    }
+  } catch(e) {
+    showSaveIndicator('error', '同步失败: ' + e.message);
+  }
+}
+
+function showSaveIndicator(type, msg) {
+  var el = document.getElementById('saveIndicator');
+  el.className = 'save-indicator show ' + type;
+  el.textContent = msg;
+}
+function hideSaveIndicator() {
+  document.getElementById('saveIndicator').classList.remove('show');
+}
+
+// ===== 立即同步 =====
+async function syncNow() {
+  var token = localStorage.getItem('githubToken');
+  if (!token) { alert('请先保存 GitHub Token'); return; }
+  saveToGitHub();
+}
+
+// ===== 从 GitHub 刷新 =====
+async function refreshFromGitHub() {
+  showSaveIndicator('saving', '正在从 GitHub 拉取最新数据...');
+  try {
+    var resp = await fetch(DATA_FILE + '?t=' + Date.now());
+    var data = await resp.json();
+    questions = data.questions || [];
+    localStorage.setItem('quizData', JSON.stringify(questions));
+    renderTable();
+    buildInsertBars();
+    updateSummary();
+    if (deleteMode) injectDeleteButtons();
+    showSaveIndicator('success', '已从 GitHub 刷新');
+    setTimeout(function() { hideSaveIndicator(); }, 2000);
+  } catch(e) {
+    showSaveIndicator('error', '刷新失败: ' + e.message);
+  }
+}
+
+// ===== Token 管理 =====
+function saveToken() {
+  var token = document.getElementById('githubTokenInput').value.trim();
+  if (!token) { alert('请输入 Token'); return; }
+  localStorage.setItem('githubToken', token);
+  updateTokenStatus();
+  alert('Token 已保存！现在插入/删除题目会自动同步到 GitHub。');
+}
+
+function removeToken() {
+  localStorage.removeItem('githubToken');
+  document.getElementById('githubTokenInput').value = '';
+  updateTokenStatus();
+  alert('Token 已移除。插入/删除题目只会保存在本地浏览器中。');
+}
+
+function updateTokenStatus() {
+  var token = localStorage.getItem('githubToken');
+  var el = document.getElementById('tokenStatus');
+  if (token) {
+    el.className = 'token-status has-token';
+    el.textContent = 'Token 已设置 — 插入/删除题目会自动同步到 GitHub，所有访问者可见';
+    document.getElementById('githubTokenInput').value = token;
+  } else {
+    el.className = 'token-status no-token';
+    el.textContent = '未设置 Token — 插入/删除题目仅保存在当前浏览器（localStorage），刷新不丢失但其他设备看不到';
+  }
+}
+
+// ===== 设置面板 =====
+function openSettings() {
+  updateTokenStatus();
+  document.getElementById('settingsOverlay').classList.add('show');
+}
+function closeSettings() {
+  document.getElementById('settingsOverlay').classList.remove('show');
+}
+
+// ===== 隐藏功能：键盘输入 yangtao =====
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (deleteMode) { toggleDeleteMode(false); return; }
+    closeSettings();
+    return;
+  }
+  var tag = document.activeElement.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+  keyBuffer += e.key.toLowerCase();
+  if (keyBuffer.length > SECRET_CODE.length) {
+    keyBuffer = keyBuffer.slice(-SECRET_CODE.length);
+  }
+  if (keyBuffer === SECRET_CODE) {
+    // 如果删除模式已开，则关闭；否则打开设置面板
+    if (deleteMode) {
+      toggleDeleteMode(false);
+      openSettings();
+    } else {
+      toggleDeleteMode(!deleteMode);
+    }
+    keyBuffer = '';
+  }
+});
+
+function toggleDeleteMode(on) {
+  deleteMode = on;
+  document.body.classList.toggle('delete-mode', on);
+  document.getElementById('deleteBanner').classList.toggle('show', on);
+  if (on) { injectDeleteButtons(); }
+  else { removeDeleteButtons(); }
+}
+
+function injectDeleteButtons() {
+  var rows = document.querySelectorAll('#quizTable tbody tr:not(.insert-row)');
+  rows.forEach(function(row) {
+    if (row.querySelector('.btn-delete')) return;
+    var answerCell = row.querySelector('.answer');
+    if (!answerCell) return;
+    var btn = document.createElement('button');
+    btn.className = 'btn-delete';
+    btn.innerHTML = '&times;';
+    btn.title = '删除此题';
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      var num = parseInt(row.querySelector('.q-num').textContent, 10);
+      if (!confirm('确认删除第 ' + num + ' 题？此操作不可撤销。')) return;
+      // 从 questions 数组中删除
+      var idx = questions.findIndex(function(q) { return q.num === num; });
+      if (idx !== -1) {
+        questions.splice(idx, 1);
+        saveToLocal();
+        renderTable();
+        buildInsertBars();
+        updateSummary();
+        if (deleteMode) injectDeleteButtons();
+        saveToGitHub();
+      }
+    };
+    answerCell.style.display = 'flex';
+    answerCell.style.alignItems = 'center';
+    answerCell.style.gap = '8px';
+    answerCell.appendChild(btn);
+  });
+}
+
+function removeDeleteButtons() {
+  document.querySelectorAll('.btn-delete').forEach(function(btn) {
+    var cell = btn.parentElement;
+    btn.remove();
+    cell.style.display = '';
+    cell.style.alignItems = '';
+    cell.style.gap = '';
+  });
+}
+</script>
+</body>
+</html>
