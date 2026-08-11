@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据安全考试题库统计表</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    padding: 24px;
+    line-height: 1.7;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #1a3a5c;
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #3b82f6;
+  }
+  .summary {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .summary-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    text-align: center;
+    min-width: 120px;
+  }
+  .summary-card .num { font-size: 22px; font-weight: 700; color: #3b82f6; }
+  .summary-card .label { font-size: 13px; color: #64748b; }
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-bar button {
+    padding: 7px 16px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    color: #475569;
+  }
+  .filter-bar button:hover { border-color: #3b82f6; color: #3b82f6; }
+  .filter-bar button.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 7px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .search-box:focus { outline: none; border-color: #3b82f6; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    font-size: 14px;
+  }
+  thead { background: #1e3a5f; }
+  thead th {
+    color: #fff;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid #e8edf3; transition: background 0.15s; }
+  tbody tr:hover { background: #eff6ff; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 10px 10px; vertical-align: top; }
+  .q-num { font-weight: 700; color: #3b82f6; white-space: nowrap; }
+  .q-type { white-space: nowrap; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-single { background: #dbeafe; color: #1e40af; }
+  .badge-multi { background: #fef3c7; color: #92400e; }
+  .badge-bool { background: #dcfce7; color: #166534; }
+  .q-content { white-space: pre-wrap; word-break: break-word; }
+  .q-content .opt { display: block; margin-top: 3px; }
+  .q-content .opt-correct { color: #166534; font-weight: 600; }
+  .q-content .opt-correct::after { content: " ✓"; color: #16a34a; }
+  .answer { color: #dc2626; font-weight: 700; white-space: nowrap; }
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+  /* 删除模式 */
+  .delete-banner {
+    display: none;
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+    border-radius: 6px;
+    padding: 8px 16px;
+    margin-bottom: 12px;
+    color: #b91c1c;
+    font-size: 13px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .delete-banner.show { display: flex; }
+  .delete-banner .hint { font-weight: 400; color: #7f1d1d; font-size: 12px; }
+  .btn-delete {
+    display: none;
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .btn-delete:hover { background: #dc2626; }
+  body.delete-mode .btn-delete { display: flex; }
+  body.delete-mode tbody tr:not(.insert-row):hover { background: #fef2f2; }
+  .del-cell { width: 40px; text-align: center; }
+
+  @media print {
+    body { background: #fff; padding: 10px; }
+    .filter-bar, .summary, .delete-banner { display: none !important; }
+    .insert-row, .modal-overlay { display: none !important; }
+    .btn-delete { display: none !important; }
+    table { font-size: 12px; box-shadow: none; }
+    thead { background: #333 !important; -webkit-print-color-adjust: exact; }
+    tbody tr:hover { background: none; }
+  }
+
+  /* 插入行 */
+  .insert-row td {
+    padding: 0 !important;
+    height: 0;
+    border: none !important;
+    background: transparent;
+    transition: height 0.15s;
+  }
+  .insert-bar {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.15s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .insert-row:hover .insert-bar,
+  .insert-row.active .insert-bar {
+    height: 34px;
+  }
+  .insert-bar::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    border-top: 2px dashed #3b82f6;
+  }
+  .insert-bar span {
+    background: #3b82f6;
+    color: #fff;
+    border-radius: 12px;
+    padding: 2px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  .insert-bar span::before { content: "+ "; }
+
+  /* 弹窗 */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    overflow-y: auto;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    width: 680px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin-bottom: 40px;
+  }
+  .modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e8edf3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h2 { font-size: 18px; color: #1a3a5c; }
+  .modal-close {
+    background: none; border: none; font-size: 22px; cursor: pointer;
+    color: #94a3b8; padding: 0 4px; line-height: 1;
+  }
+  .modal-close:hover { color: #dc2626; }
+  .modal-body { padding: 20px 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block; font-weight: 600; font-size: 13px;
+    color: #475569; margin-bottom: 6px;
+  }
+  .form-group textarea, .form-group input[type="text"], .form-group select {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #2c3e50;
+  }
+  .form-group textarea { resize: vertical; min-height: 60px; }
+  .form-group textarea:focus, .form-group input:focus, .form-group select:focus {
+    outline: none; border-color: #3b82f6;
+  }
+  .type-selector { display: flex; gap: 8px; }
+  .type-selector label {
+    flex: 1; text-align: center; cursor: pointer;
+    padding: 8px 0; border: 2px solid #e2e8f0; border-radius: 8px;
+    font-size: 13px; font-weight: 600; color: #64748b;
+    transition: all 0.15s; margin: 0;
+  }
+  .type-selector input { display: none; }
+  .type-selector input:checked + span {
+    color: inherit;
+  }
+  .type-selector label:has(input:checked) {
+    border-color: #3b82f6; background: #eff6ff; color: #1e40af;
+  }
+  .options-container { display: flex; flex-direction: column; gap: 8px; }
+  .option-input-row {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .option-input-row .opt-letter {
+    font-weight: 700; color: #3b82f6; width: 24px; text-align: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .option-input-row input[type="text"] {
+    flex: 1; border: 1px solid #cbd5e1; border-radius: 6px;
+    padding: 6px 10px; font-size: 13px; font-family: inherit;
+  }
+  .option-input-row input[type="text"]:focus { outline: none; border-color: #3b82f6; }
+  .option-input-row input[type="checkbox"] {
+    width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;
+  }
+  .option-input-row .opt-correct-label {
+    font-size: 12px; color: #16a34a; font-weight: 600; white-space: nowrap;
+  }
+  .option-input-row .btn-remove-opt {
+    background: #fee2e2; color: #dc2626; border: none;
+    border-radius: 4px; cursor: pointer; font-size: 16px;
+    width: 26px; height: 26px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .option-input-row .btn-remove-opt:hover { background: #fecaca; }
+  .btn-add-option {
+    align-self: flex-start;
+    background: #f1f5f9; border: 1px dashed #94a3b8;
+    border-radius: 6px; padding: 6px 16px; cursor: pointer;
+    font-size: 13px; color: #64748b;
+  }
+  .btn-add-option:hover { background: #e2e8f0; border-color: #64748b; }
+  .modal-footer {
+    padding: 16px 24px; border-top: 1px solid #e8edf3;
+    display: flex; justify-content: flex-end; gap: 10px;
+  }
+  .modal-footer button {
+    padding: 8px 24px; border-radius: 6px; cursor: pointer;
+    font-size: 14px; font-weight: 600; border: none;
+  }
+  .btn-cancel { background: #f1f5f9; color: #64748b; }
+  .btn-cancel:hover { background: #e2e8f0; }
+  .btn-insert { background: #3b82f6; color: #fff; }
+  .btn-insert:hover { background: #2563eb; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>数据安全考试题库统计表</h1>
+
+  <div class="summary">
+    <div class="summary-card"><div class="num">69</div><div class="label">总题数</div></div>
+    <div class="summary-card"><div class="num">25</div><div class="label">单选题</div></div>
+    <div class="summary-card"><div class="num">24</div><div class="label">多选题</div></div>
+    <div class="summary-card"><div class="num">20</div><div class="label">判断题</div></div>
+    <div class="summary-card"><div class="num">138</div><div class="label">总分</div></div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="active" onclick="filterType('all', this)">全部</button>
+    <button onclick="filterType('single', this)">单选题</button>
+    <button onclick="filterType('multi', this)">多选题</button>
+    <button onclick="filterType('bool', this)">判断题</button>
+    <button onclick="openInsertModal(-1)" style="padding:7px 16px;border:1px solid #3b82f6;background:#3b82f6;color:#fff;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;">+ 插入新题</button>
+    <input type="text" class="search-box" placeholder="搜索题目关键词…" oninput="searchTable(this.value)">
+  </div>
+
+  <div class="delete-banner" id="deleteBanner">
+    <span>删除模式已开启 — 点击题目右侧的红色按钮即可删除</span>
+    <span class="hint">再次输入 yangtao 或按 ESC 关闭</span>
+  </div>
+
+  <table id="quizTable">
+    <thead>
+      <tr>
+        <th style="width:50px;">题号</th>
+        <th style="width:70px;">题型</th>
+        <th>题目及选项（原文）</th>
+        <th style="width:120px;">正确答案</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-type="single">
+        <td class="q-num">06</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">根据数据安全管理办法，要求各系统留存日志，非涉敏系统日志留存周期至少（），涉敏系统系统日志留存周期至少（）。
+<span class="opt">A、6月，6月</span>
+<span class="opt opt-correct">B、6月，36月</span>
+<span class="opt">C、12月，36月</span>
+<span class="opt">D、6月，12月</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">07</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">定级备案信息发生变化的，应当自信息变化之日起（）日内向工信部定级备案系统提交变更申请。
+<span class="opt">A、15</span>
+<span class="opt opt-correct">B、30</span>
+<span class="opt">C、45</span>
+<span class="opt">D、60</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">08</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">根据数据安全管理办法，涉及客户相关数据和企业自身数据的业务系统，针对数据安全事件的典型场景，需至少（）开展一次应急演练。
+<span class="opt">A、每月</span>
+<span class="opt">B、每季度</span>
+<span class="opt">C、每半年</span>
+<span class="opt opt-correct">D、每年</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">09</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">特殊情况下需进行主机互访绕行登录，需在（）上进行主机互访备案，原则上一次最长可填写（）。
+<span class="opt">A、全网安全运营管理平台（SMC），半年</span>
+<span class="opt opt-correct">B、全网安全运营管理平台（SMC），一年</span>
+<span class="opt">C、4A系统，半年</span>
+<span class="opt">D、4A系统，一年</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">10</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">针对安全补丁的预防攻击行为，以下说法正确的是（）？
+<span class="opt">A、安装防病毒软件，定期升级病毒库</span>
+<span class="opt">B、及时安装安全补丁，定期查杀</span>
+<span class="opt">C、提高安全意识</span>
+<span class="opt opt-correct">D、以上说法都对</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">11</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">以下哪一项（）属于典型弱口令，存在极大安全风险？
+<span class="opt">A、Qwe@1658932</span>
+<span class="opt opt-correct">B、123456、admin、password</span>
+<span class="opt">C、Atymn157!@#</span>
+<span class="opt">D、8位以上混合大小写、数字、符号</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">12</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">项目负责人在新项目立项时，首次发起（）的评审流程。
+<span class="opt opt-correct">A、安全三同步</span>
+<span class="opt">B、渗透测试</span>
+<span class="opt">C、代码审计</span>
+<span class="opt">D、互联网报备</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">13</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">安全三同步立项变更评审流程：安全三同步立项评审流程结束后，由于（）变更需要重新进行安全三同步评审时的流程。
+<span class="opt">A、安全接口人</span>
+<span class="opt opt-correct">B、业务侧</span>
+<span class="opt">C、安全管理员</span>
+<span class="opt">D、部门安全管理员</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">14</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">下列哪项不属于银狐木马的威胁特点（）？
+<span class="opt">A、种类多变、传播范围广</span>
+<span class="opt opt-correct">B、仅针对个人用户，不攻击企业</span>
+<span class="opt">C、传播速度快、威胁态势升级</span>
+<span class="opt">D、获利方式向数字资产窃取演变</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">15</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">收到陌生钓鱼邮件时，以下做法错误的是（）。
+<span class="opt">A、不点击邮件中的不明链接</span>
+<span class="opt">B、不打开来历不明的附件</span>
+<span class="opt opt-correct">C、按照邮件提示输入账号密码</span>
+<span class="opt">D、及时向安全管理人员报告</span></td>
+        <td class="answer">C</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">16</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">以下哪项不符合定级备案材料的要求？
+<span class="opt">A、软件的资产型号不能填写为所在主机的资产型号</span>
+<span class="opt">B、定级报告"安全等级的确定"应符合《YDT 3799-2020 电信网和互联网网络安全防护定级备案实施指南》中的相关标准</span>
+<span class="opt">C、同一IP地址，存在虚拟资产/服务器，则应有基础软件或应用软件</span>
+<span class="opt opt-correct">D、资产表中"承载网ip""业务ip""虚拟ip"是同一个ip地址</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">17</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">Spark组件中，为了启用事件日志记录以便审计和故障排查，spark.eventLog.enabled的值应配置为？
+<span class="opt">A. false</span>
+<span class="opt opt-correct">B. true</span>
+<span class="opt">C. on</span>
+<span class="opt">D. yes</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">18</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">Yarn组件中，为了防止资源被恶意占用，需启用资源隔离检查，yarn.nodemanager.resource-monitoring.enabled的值应配置为？
+<span class="opt">A. false</span>
+<span class="opt opt-correct">B. true</span>
+<span class="opt">C. 0</span>
+<span class="opt">D. disable</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">19</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">涉及客户敏感信息的操作日志应留存不少于（）年，在线日志留存不少于（）个月？
+<span class="opt">A、3、3</span>
+<span class="opt">B、1、6</span>
+<span class="opt opt-correct">C、3、6</span>
+<span class="opt">D、2、6</span></td>
+        <td class="answer">C</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">20</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">针对暴露面的数据泄露情况，为防止风险蔓延，发现该事件后，（）分钟内需上报至数据安全组，（）分钟内完成事件处置。
+<span class="opt">A.5，20</span>
+<span class="opt opt-correct">B.5，30</span>
+<span class="opt">C.10，30</span>
+<span class="opt">D.10，60</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">21</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">应急响应技术组应于应急处理结束后（）个工作日内汇总形成总结报告，报应急响应领导组。
+<span class="opt">A.5</span>
+<span class="opt opt-correct">B.10</span>
+<span class="opt">B.15</span>
+<span class="opt">C.20</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">22</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">应急演练要做到全面演练和专项演练相结合，至少多久组织开展数据安全专项应急演练，保存演练记录，并视相关要求将应急演练情况上报行业监管部门。
+<span class="opt">B.每月一次</span>
+<span class="opt">B.每季度一次</span>
+<span class="opt">C.每半年一次</span>
+<span class="opt opt-correct">D.每年一次</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">23</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">系统应根据数据的敏感级别和类型，采用必要的技术措施（如模糊化、加解密、脱敏、防泄密等）以及（），对数据在采集、传输、存储、使用、共享、销毁时进行相关安全防护。
+<span class="opt opt-correct">A、数据备份及恢复技术</span>
+<span class="opt">B、模糊化技术</span>
+<span class="opt">C、加密技术</span>
+<span class="opt">D、备份技术</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">24</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">对于临时、短期的数据存储业务需求场景，应考虑设置数据存储时效，对"（）"存储数据情况及时清理。
+<span class="opt">A、超时、超限</span>
+<span class="opt">B、超时、超期</span>
+<span class="opt opt-correct">C、超期、超限</span>
+<span class="opt">D、超限</span></td>
+        <td class="answer">C</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">25</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">系统上线前应明确本系统的资产、网络、（）等情况，并完成系统定级备案。
+<span class="opt">A、主机</span>
+<span class="opt opt-correct">B、互联网暴露面</span>
+<span class="opt">C、数据库</span>
+<span class="opt">D、应用系统</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">26</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">上线前回收与系统运行无关的人员的（）应及时回收。
+<span class="opt">A、应用权限</span>
+<span class="opt">B、数据库权限</span>
+<span class="opt">C、主机权限</span>
+<span class="opt opt-correct">D、账号权限</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">27</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">互联网暴露面应具有双因素认证能力，至少包含（）种强认证措施。
+<span class="opt opt-correct">A、1</span>
+<span class="opt">B、2</span>
+<span class="opt">C、3</span>
+<span class="opt">D、4</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">28</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">数据加密应采用的算法是（）
+<span class="opt">A、内部自研未公开算法</span>
+<span class="opt opt-correct">B、公认安全、标准化公开的密码算法</span>
+<span class="opt">C、简单易实现的弱算法</span>
+<span class="opt">D、任意可用算法</span></td>
+        <td class="answer">B</td>
+      </tr>
+
+      <!-- 多选题 -->
+      <tr data-type="multi">
+        <td class="q-num">29</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">定级备案材料哪些地方需要体现业务系统名称，以建立业务系统和定级备案系统的映射关系？
+<span class="opt opt-correct">A、资产表中应用软件的"资产型号"字段</span>
+<span class="opt opt-correct">B、定级报告系统概述、业务/应用范围处</span>
+<span class="opt opt-correct">C、备案信息表中应用软件的名称</span>
+<span class="opt opt-correct">D、资产导入模板表中应用软件名称</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">30</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">定级备案材料哪些地方需要体现互联网暴露面信息？
+<span class="opt opt-correct">A、资产表的"是否可从互联网访问"、"网络位置"、"业务对应互联网IPv4地址""端口"</span>
+<span class="opt opt-correct">B、如涉及域名，需填写备案信息表的"信息服务系统所用域名"、"信息服务系统.cn域名相关记录"、"域名注册服务机构信息"</span>
+<span class="opt opt-correct">C、备案信息表的"信息服务系统使用的公网IP地址段"、"服务系统使用的主要协议和端口"</span>
+<span class="opt opt-correct">D、资产导入模板表应用软件页的"端口"、"URL"、"IP地址段"</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">31</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">网络钓鱼的常见类型有哪些（）？
+<span class="opt opt-correct">A、邮件钓鱼</span>
+<span class="opt opt-correct">B、网页钓鱼</span>
+<span class="opt opt-correct">C、二维码钓鱼</span>
+<span class="opt opt-correct">D、公共WIFI钓鱼</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">32</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">下列哪些特征，属于可疑钓鱼邮件的常见表现（）？
+<span class="opt opt-correct">A、声称账号异常、中奖、涉诉，诱导紧急操作</span>
+<span class="opt opt-correct">B、发件人地址异常，与官方不符</span>
+<span class="opt opt-correct">C、要求点击链接并输入敏感信息</span>
+<span class="opt">D、内容正规、来源可查、无诱导操作</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">33</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">以下哪些是定级备案材料网络拓扑图的绘制要求？
+<span class="opt opt-correct">A、网络拓扑图中的每个资产都需标注IP</span>
+<span class="opt opt-correct">B、网络拓扑图中区分了资源池、pod等，资源池、pod之间需进行互联</span>
+<span class="opt opt-correct">C、网络拓扑图资源池、pod内资产不能只有主机，应还有其他网络、安全防护设备</span>
+<span class="opt">D、网络拓扑图中需标注清楚资产相应的资源池、类型、品牌、型号、数量</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">34</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">在HBase组件安全配置中，以下哪些参数涉及安全认证或传输保护？
+<span class="opt opt-correct">A. hbase.security.authentication.ui</span>
+<span class="opt">B. hbase.zookeeper.property.maxClientCnxns</span>
+<span class="opt opt-correct">C. hbase.rpc.protection</span>
+<span class="opt">D. dfs.permissions.enabled</span></td>
+        <td class="answer">A、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">35</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">以下哪些操作属于大数据组件安全基线整改的通用步骤？
+<span class="opt opt-correct">A. 停止相关服务</span>
+<span class="opt opt-correct">B. 备份配置文件</span>
+<span class="opt opt-correct">C. 编辑配置文件修改参数</span>
+<span class="opt opt-correct">D. 重新启动服务</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">36</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">数据加解密日志应记录的关键信息包括（）？
+<span class="opt opt-correct">A、执行时间、操作账号</span>
+<span class="opt opt-correct">B、 处理方式、授权情况</span>
+<span class="opt opt-correct">C、 IP 地址、登录信息</span>
+<span class="opt opt-correct">D、 操作内容</span>
+<span class="opt">E、 明文密码与密</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">37</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">一般数据进一步细分为哪几个级？
+<span class="opt opt-correct">A、一般-4级</span>
+<span class="opt opt-correct">B、一般-3级</span>
+<span class="opt opt-correct">C、一般-2级</span>
+<span class="opt opt-correct">D、一般-1级</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">38</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">数据安全管控要求中，明确岗位角色和权限的匹配规则，应满足以下要求：
+<span class="opt opt-correct">A、按照权限最小化</span>
+<span class="opt opt-correct">B、依据人员岗位角色进行账号授权</span>
+<span class="opt opt-correct">C、不得给同一用户账号赋予互斥的角色和超过工作职责的权限</span>
+<span class="opt">D、审核工单中申请的权限均直接赋权</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">39</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">以下哪些软件不可以在生产终端安装。
+<span class="opt opt-correct">A、向日葵远控软件</span>
+<span class="opt opt-correct">B、todesk远控软件</span>
+<span class="opt opt-correct">C、百度网盘</span>
+<span class="opt">D、零信任</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">40</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">合作伙伴可通过以下哪种方式接入公司4A系统？
+<span class="opt">A、登录SDP后直接登录4A</span>
+<span class="opt opt-correct">B、登录SDP使用云桌面登录4A</span>
+<span class="opt opt-correct">C、使用公司提供的云桌面瘦终端登录4A</span>
+<span class="opt">D、使用虚拟机登录SDP后登录4A</span></td>
+        <td class="answer">B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">41</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">数据分级应按照数据重要程度和敏感程度，依据以下哪些原则：
+<span class="opt opt-correct">A、时效性原则</span>
+<span class="opt opt-correct">B、就高不就低原则</span>
+<span class="opt opt-correct">C、关联叠加效应原则</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">42</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">涉敏数据包括以下哪几类数据。
+<span class="opt opt-correct">A、核心数据</span>
+<span class="opt opt-correct">B、重要数据</span>
+<span class="opt opt-correct">C、一般级-第4级数据</span>
+<span class="opt opt-correct">D、一般级-第3级数据</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">43</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">以下哪些类别原则上禁止数据对外提供。
+<span class="opt opt-correct">A、重要数据</span>
+<span class="opt opt-correct">B、核心数据</span>
+<span class="opt opt-correct">C、一般-4级数据</span>
+<span class="opt">D、一般-3级数据</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">44</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">哪些级别传输过程中必须对数据进行加密后传输或通过加密信道传输，保证数据传输的保密性。
+<span class="opt opt-correct">A、核心及重要数据</span>
+<span class="opt opt-correct">B、一般-4级数据</span>
+<span class="opt opt-correct">C、一般-3级数据</span>
+<span class="opt opt-correct">D、一般-2级数据</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">45</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">4A管控包含哪几方面的安全管理。
+<span class="opt opt-correct">A、账号（Account）</span>
+<span class="opt opt-correct">B、认证（Authentication）</span>
+<span class="opt opt-correct">C、授权(Authorization)</span>
+<span class="opt opt-correct">D、安全审计(Audit）</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+
+      <!-- 判断题 -->
+      <tr data-type="bool">
+        <td class="q-num">46</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">账号口令记不住，为了避免恶意登录加锁，可以把账号口令写在纸条贴在电脑旁。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">47</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">定级备案要求对已正式投入运行的业务系统和资源进行备案。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">48</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">原则上各部门所有业务系统应用资源和系统资源的帐号、认证、授权、日志等均应纳入4A系统。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">49</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">全量已投入生产的数据资产均需接入数管平台，但HDFS、SFTP服务器等不属于数据库，无需接入。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">50</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">只要电脑安装了杀毒软件，就可以完全防御所有病毒、木马和钓鱼攻击，不需要再注意上网行为（）。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">51</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">"离开必锁屏、下班必关机" 是保护终端数据安全、防止信息泄露的重要安全规范（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">52</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">"十必须"要求做到：身份必认证、口令必强健；离开必锁屏、下班必关机；软件必检测、介质必审查；防护必开启、补丁必及时；风险必警惕、事件必即报（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">53</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">各项备案材料之间的资产信息、暴露面信息、安全等级、网络单元类型、服务范围等应相互对应、保持一致（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">54</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">数据加密可以使用内部自定义的非标准密码算法（）。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">55</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">数据解密使用应遵循 "最少够用" 原则，非必要不解密（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <!-- 以下为新增题目 -->
+      <tr data-type="single">
+        <td class="q-num">56</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">分区域安全管控中所述的生产数据，指的是( )。
+<span class="opt">A、数据生产方为大数据分公司的数据</span>
+<span class="opt">B、数据使用方为大数据分公司的数据</span>
+<span class="opt">C、数据运维方为大数据分公司的数据</span>
+<span class="opt opt-correct">D、数据责任方为大数据分公司的数据</span></td>
+        <td class="answer">D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">57</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">访问所有IT系统的资源时，需经过4A系统登录，不得绕行，特殊系统和特殊情况需要绕行的需进行备案。以下哪些场景属于可绕行备案的场景？
+<span class="opt opt-correct">A、应急情况下终端直连系统</span>
+<span class="opt opt-correct">B、非人员访问的主机互访行为</span>
+<span class="opt opt-correct">C、特殊应用资源（如自登录、图形堡垒访问等）</span>
+<span class="opt">D、人员通过跨主机切换进行日常业务操作</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">58</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">下列行为属于严禁 / 禁止的有（）？
+<span class="opt opt-correct">A、违规复制、存储、传播重要及涉密数据</span>
+<span class="opt opt-correct">B、明文存储密码</span>
+<span class="opt opt-correct">C、私自安装远程软件</span>
+<span class="opt">D、发生泄密后及时上报</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">59</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">日志记录信息应包括哪些关键信息，确保日志记录完整、准确？
+<span class="opt opt-correct">A、执行时间、操作账号</span>
+<span class="opt opt-correct">B、处理方式、授权情况</span>
+<span class="opt opt-correct">C、IP地址、登录信息</span>
+<span class="opt opt-correct">D、操作内容</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">60</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">如数管平台不支持扫描该类型数据资产，则无需接入数管平台开展分类分级。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">61</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">数据库接4A仅需接入VIP，实体无需接入4A。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">62</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">部门安全管理员：对项目负责人提交的立项工单或驳回处理后的工单进行审核（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">63</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">重要数据和核心数据的存储，应当采用校验技术、密码技术等措施（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">64</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">数据安全管控要求中，账号权限及访问控制管理坚持哪些原则？
+<span class="opt opt-correct">A、权限明确</span>
+<span class="opt opt-correct">B、职责互斥</span>
+<span class="opt opt-correct">C、最小特权</span>
+<span class="opt">D、按需赋权</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">65</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">加密数据销毁要求包括（）？
+<span class="opt opt-correct">A、设定存储周期，超期自动清理</span>
+<span class="opt opt-correct">B、 销毁日志留痕</span>
+<span class="opt opt-correct">C、 人为销毁纳入审计</span>
+<span class="opt opt-correct">D、 敏感信息专人彻底删除</span></td>
+        <td class="answer">A、B、C、D</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">66</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">一般数据包括哪些？
+<span class="opt opt-correct">A、用户相关数据</span>
+<span class="opt opt-correct">B、企业自身数据</span>
+<span class="opt">C、其他</span></td>
+        <td class="answer">A、B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">67</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">账号口令记不住，为了避免恶意登录加锁，可以把账号口令写在纸条贴在电脑旁。
+<span class="opt">A、正确</span>
+<span class="opt opt-correct">B、错误</span></td>
+        <td class="answer">B</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">68</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">跨越互联网的数据传输，必须进行加密或通过加密信道传输（）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="single">
+        <td class="q-num">69</td>
+        <td class="q-type"><span class="badge badge-single">单选2分</span></td>
+        <td class="q-content">对不同安全级别的数据，以下不属于安全存储方式的是（ ）
+<span class="opt">A、脱敏存储</span>
+<span class="opt">B、去标识化存储</span>
+<span class="opt opt-correct">C、明文公开存储</span>
+<span class="opt">D、加密存储</span></td>
+        <td class="answer">C</td>
+      </tr>
+      <tr data-type="multi">
+        <td class="q-num">70</td>
+        <td class="q-type"><span class="badge badge-multi">多选2分</span></td>
+        <td class="q-content">定级备案材料变更时哪些属于关键信息变更，需要进行部门领导审批？
+<span class="opt opt-correct">A、网络安全等级、网络单元类型变更</span>
+<span class="opt opt-correct">B、新上线系统、下线系统</span>
+<span class="opt opt-correct">C、新增备案系统、废除备案系统</span></td>
+        <td class="answer">A、B、C</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">71</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">安全验收目前公司要求的评审流程，是需要通过SMC（全网安全运营管理平台）完成后才能发起万能审批流程（ ）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">72</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">"五不准"要求做到：不轻信非官方文件、不点击不明链接、不安装未认证软件、不松懈锁屏/关机、不疏漏更新查杀（ ）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">73</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">数据解密使用应遵循"最少够用"原则，非必要不解密（ ）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+      <tr data-type="bool">
+        <td class="q-num">74</td>
+        <td class="q-type"><span class="badge badge-bool">判断2分</span></td>
+        <td class="q-content">解密后数据原则上不可持久化存储，应即用即删（ ）。
+<span class="opt opt-correct">A、正确</span>
+<span class="opt">B、错误</span></td>
+        <td class="answer">A</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    共 69 题 ｜ 单选 25 题 · 多选 24 题 · 判断 20 题 ｜ 每题 2 分，满分 138 分
+  </div>
+</div>
+
+<!-- 插入题目弹窗 -->
+<div class="modal-overlay" id="insertModal" onclick="if(event.target===this)closeInsertModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>插入新题</h2>
+      <button class="modal-close" onclick="closeInsertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>插入位置</label>
+        <select id="insertPosition"></select>
+      </div>
+      <div class="form-group">
+        <label>题型</label>
+        <div class="type-selector">
+          <label><input type="radio" name="qType" value="single" checked><span>单选题</span></label>
+          <label><input type="radio" name="qType" value="multi"><span>多选题</span></label>
+          <label><input type="radio" name="qType" value="bool"><span>判断题</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>题目内容</label>
+        <textarea id="qText" placeholder="输入题目内容…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>选项（勾选正确答案）</label>
+        <div class="options-container" id="optionsContainer"></div>
+        <button class="btn-add-option" onclick="addOptionRow()">+ 添加选项</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeInsertModal()">取消</button>
+      <button class="btn-insert" onclick="confirmInsert()">插入题目</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var insertAfterIndex = -1; // -1 = 末尾
+
+// ===== 筛选 & 搜索 =====
+function filterType(type, btn) {
+  document.querySelectorAll('.filter-bar button:not(.btn-insert)').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  var rows = document.querySelectorAll('#quizTable tbody tr');
+  rows.forEach(function(row) {
+    if (row.classList.contains('insert-row')) { row.style.display = ''; return; }
+    if (type === 'all' || row.dataset.type === type) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+  refreshInsertBars();
+}
+function searchTable(keyword) {
+  keyword = keyword.trim().toLowerCase();
+  var rows = document.querySelectorAll('#quizTable tbody tr');
+  rows.forEach(function(row) {
+    if (row.classList.contains('insert-row')) { row.style.display = ''; return; }
+    var text = row.textContent.toLowerCase();
+    row.style.display = (keyword === '' || text.includes(keyword)) ? '' : 'none';
+  });
+  refreshInsertBars();
+}
+
+// ===== 插入行（题与题之间的横线）=====
+function buildInsertBars() {
+  var tbody = document.querySelector('#quizTable tbody');
+  var questionRows = Array.from(tbody.querySelectorAll('tr:not(.insert-row)'));
+  // 清除旧的
+  tbody.querySelectorAll('.insert-row').forEach(function(r) { r.remove(); });
+  // 在每题前面和最后一题后面插入 insert bar
+  questionRows.forEach(function(row, i) {
+    var insRow = document.createElement('tr');
+    insRow.className = 'insert-row';
+    insRow.innerHTML = '<td colspan="4"><div class="insert-bar"><span>插入题目</span></div></td>';
+    (function(idx) {
+      insRow.querySelector('.insert-bar').addEventListener('click', function() {
+        openInsertModal(idx);
+      });
+    })(i);
+    tbody.insertBefore(insRow, row);
+  });
+  // 末尾
+  var lastRow = document.createElement('tr');
+  lastRow.className = 'insert-row';
+  lastRow.innerHTML = '<td colspan="4"><div class="insert-bar"><span>插入题目</span></div></td>';
+  lastRow.querySelector('.insert-bar').addEventListener('click', function() {
+    openInsertModal(-1);
+  });
+  tbody.appendChild(lastRow);
+}
+
+function refreshInsertBars() {
+  // 隐藏不可见的 insert bar（前后题目都被隐藏时）
+  var rows = Array.from(document.querySelectorAll('#quizTable tbody tr'));
+  for (var i = 0; i < rows.length; i++) {
+    if (!rows[i].classList.contains('insert-row')) continue;
+    var prev = null, next = null;
+    for (var j = i - 1; j >= 0; j--) { if (!rows[j].classList.contains('insert-row')) { prev = rows[j]; break; } }
+    for (var j = i + 1; j < rows.length; j++) { if (!rows[j].classList.contains('insert-row')) { next = rows[j]; break; } }
+    var prevVisible = prev && prev.style.display !== 'none';
+    var nextVisible = next && next.style.display !== 'none';
+    rows[i].style.display = (prevVisible || nextVisible || (!prev && nextVisible) || (!next && prevVisible)) ? '' : 'none';
+  }
+}
+
+// ===== 弹窗 =====
+function openInsertModal(afterIdx) {
+  insertAfterIndex = afterIdx;
+  // 填充位置下拉
+  var sel = document.getElementById('insertPosition');
+  sel.innerHTML = '';
+  var rows = Array.from(document.querySelectorAll('#quizTable tbody tr:not(.insert-row)'));
+  rows.forEach(function(row, i) {
+    var num = row.querySelector('.q-num').textContent;
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = (i === afterIdx || (afterIdx === -1 && i === rows.length - 1))
+      ? '在第 ' + num + ' 题之后（当前选中）'
+      : '在第 ' + num + ' 题之后';
+    sel.appendChild(opt);
+  });
+  if (afterIdx === -1) {
+    sel.value = rows.length - 1;
+  } else {
+    sel.value = afterIdx;
+  }
+  // 重置表单
+  document.querySelector('input[name="qType"][value="single"]').checked = true;
+  document.getElementById('qText').value = '';
+  renderOptions('single');
+  document.getElementById('insertModal').classList.add('show');
+}
+
+function closeInsertModal() {
+  document.getElementById('insertModal').classList.remove('show');
+}
+
+// ===== 选项管理 =====
+function renderOptions(type) {
+  var container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  if (type === 'bool') {
+    // 判断题：固定 A正确 B错误
+    addOptionRow('A、正确', false);
+    addOptionRow('B、错误', false);
+    document.querySelector('.btn-add-option').style.display = 'none';
+  } else {
+    addOptionRow('', false);
+    addOptionRow('', false);
+    addOptionRow('', false);
+    addOptionRow('', false);
+    document.querySelector('.btn-add-option').style.display = '';
+  }
+}
+
+function addOptionRow(text, isCorrect) {
+  var container = document.getElementById('optionsContainer');
+  var letters = 'ABCDEFGHIJ';
+  var idx = container.children.length;
+  var row = document.createElement('div');
+  row.className = 'option-input-row';
+  row.innerHTML =
+    '<span class="opt-letter">' + letters[idx] + '</span>' +
+    '<input type="text" placeholder="输入选项内容…" value="' + (text || '') + '">' +
+    '<input type="checkbox"' + (isCorrect ? ' checked' : '') + '>' +
+    '<span class="opt-correct-label">正确</span>' +
+    '<button class="btn-remove-opt" onclick="removeOptionRow(this)">&times;</button>';
+  container.appendChild(row);
+  updateOptionLetters();
+}
+
+function removeOptionRow(btn) {
+  var container = document.getElementById('optionsContainer');
+  if (container.children.length <= 2) return; // 至少保留2个
+  btn.parentElement.remove();
+  updateOptionLetters();
+}
+
+function updateOptionLetters() {
+  var rows = document.querySelectorAll('#optionsContainer .option-input-row');
+  var letters = 'ABCDEFGHIJ';
+  rows.forEach(function(row, i) {
+    row.querySelector('.opt-letter').textContent = letters[i];
+  });
+}
+
+// 监听题型变化
+document.querySelectorAll('input[name="qType"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    renderOptions(this.value);
+  });
+});
+
+// ===== 确认插入 =====
+function confirmInsert() {
+  // 获取题型
+  var type = document.querySelector('input[name="qType"]:checked').value;
+  // 获取题号 = 最大现有题号 + 1
+  var existingNums = Array.from(document.querySelectorAll('#quizTable tbody tr:not(.insert-row) .q-num'))
+    .map(function(el) { return parseInt(el.textContent, 10); })
+    .filter(function(n) { return !isNaN(n); });
+  var maxNum = Math.max.apply(null, existingNums);
+  var newNum = maxNum + 1;
+  // 补零
+  var numStr = newNum < 10 ? '0' + newNum : '' + newNum;
+
+  // 获取题目内容
+  var qText = document.getElementById('qText').value.trim();
+  if (!qText) { alert('请输入题目内容'); return; }
+
+  // 获取选项
+  var optRows = document.querySelectorAll('#optionsContainer .option-input-row');
+  var options = [];
+  var correctLetters = [];
+  var letters = 'ABCDEFGHIJ';
+  optRows.forEach(function(row, i) {
+    var text = row.querySelector('input[type="text"]').value.trim();
+    if (!text) return;
+    var isCorrect = row.querySelector('input[type="checkbox"]').checked;
+    options.push({ letter: letters[i], text: text, correct: isCorrect });
+    if (isCorrect) correctLetters.push(letters[i]);
+  });
+  if (options.length < 2) { alert('至少需要2个选项'); return; }
+  if (correctLetters.length === 0) { alert('请至少勾选一个正确答案'); return; }
+
+  // 构建 HTML
+  var badgeClass = type === 'single' ? 'badge-single' : (type === 'multi' ? 'badge-multi' : 'badge-bool');
+  var typeLabel = type === 'single' ? '单选2分' : (type === 'multi' ? '多选2分' : '判断2分');
+  var dataType = type === 'single' ? 'single' : (type === 'multi' ? 'multi' : 'bool');
+
+  var optsHtml = options.map(function(opt) {
+    var cls = opt.correct ? 'opt opt-correct' : 'opt';
+    return '<span class="' + cls + '">' + opt.letter + '、' + opt.text + '</span>';
+  }).join('\n');
+
+  var answerText = correctLetters.join('、');
+
+  var tr = document.createElement('tr');
+  tr.dataset.type = dataType;
+  tr.innerHTML =
+    '<td class="q-num">' + numStr + '</td>' +
+    '<td class="q-type"><span class="badge ' + badgeClass + '">' + typeLabel + '</span></td>' +
+    '<td class="q-content">' + escapeHtml(qText) + '\n' + optsHtml + '</td>' +
+    '<td class="answer">' + answerText + '</td>';
+
+  // 获取插入位置
+  var posSelect = document.getElementById('insertPosition');
+  var posIdx = parseInt(posSelect.value, 10);
+
+  // 找到目标题行
+  var questionRows = Array.from(document.querySelectorAll('#quizTable tbody tr:not(.insert-row)'));
+  var targetRow = questionRows[posIdx];
+
+  // 插入到目标行之后
+  targetRow.parentNode.insertBefore(tr, targetRow.nextSibling);
+
+  // 重建 insert bars
+  buildInsertBars();
+  // 更新统计
+  updateSummary();
+  // 如果删除模式开着，给新插入的题也加删除按钮
+  if (deleteMode) injectDeleteButtons();
+
+  closeInsertModal();
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ===== 更新统计 =====
+function updateSummary() {
+  var rows = document.querySelectorAll('#quizTable tbody tr:not(.insert-row)');
+  var total = rows.length;
+  var single = 0, multi = 0, bool = 0;
+  rows.forEach(function(row) {
+    var t = row.dataset.type;
+    if (t === 'single') single++;
+    else if (t === 'multi') multi++;
+    else if (t === 'bool') bool++;
+  });
+  var cards = document.querySelectorAll('.summary-card .num');
+  cards[0].textContent = total;
+  cards[1].textContent = single;
+  cards[2].textContent = multi;
+  cards[3].textContent = bool;
+  cards[4].textContent = total * 2;
+  document.querySelector('.footer').textContent =
+    '共 ' + total + ' 题 ｜ 单选 ' + single + ' 题 · 多选 ' + multi + ' 题 · 判断 ' + bool + ' 题 ｜ 每题 2 分，满分 ' + (total * 2) + ' 分';
+}
+
+// ===== 隐藏的删除模式（键盘输入 yangtao 激活）=====
+var keyBuffer = '';
+var deleteMode = false;
+var SECRET_CODE = 'yangtao';
+
+document.addEventListener('keydown', function(e) {
+  // ESC 关闭删除模式
+  if (e.key === 'Escape' && deleteMode) {
+    toggleDeleteMode(false);
+    return;
+  }
+  // 不在 input/textarea 里才记录
+  var tag = document.activeElement.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+  keyBuffer += e.key.toLowerCase();
+  // 只保留最近 SECRET_CODE.length 个字符
+  if (keyBuffer.length > SECRET_CODE.length) {
+    keyBuffer = keyBuffer.slice(-SECRET_CODE.length);
+  }
+  if (keyBuffer === SECRET_CODE) {
+    toggleDeleteMode(!deleteMode);
+    keyBuffer = '';
+  }
+});
+
+function toggleDeleteMode(on) {
+  deleteMode = on;
+  document.body.classList.toggle('delete-mode', on);
+  document.getElementById('deleteBanner').classList.toggle('show', on);
+  if (on) {
+    injectDeleteButtons();
+  } else {
+    removeDeleteButtons();
+  }
+}
+
+function injectDeleteButtons() {
+  var rows = document.querySelectorAll('#quizTable tbody tr:not(.insert-row)');
+  rows.forEach(function(row) {
+    if (row.querySelector('.btn-delete')) return;
+    var answerCell = row.querySelector('.answer');
+    if (!answerCell) return;
+    var btn = document.createElement('button');
+    btn.className = 'btn-delete';
+    btn.innerHTML = '&times;';
+    btn.title = '删除此题';
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      var num = row.querySelector('.q-num').textContent;
+      if (!confirm('确认删除第 ' + num + ' 题？此操作不可撤销。')) return;
+      row.remove();
+      buildInsertBars();
+      updateSummary();
+    };
+    // 用 flex 让答案和按钮并排
+    answerCell.style.display = 'flex';
+    answerCell.style.alignItems = 'center';
+    answerCell.style.gap = '8px';
+    answerCell.appendChild(btn);
+  });
+}
+
+function removeDeleteButtons() {
+  document.querySelectorAll('.btn-delete').forEach(function(btn) {
+    var cell = btn.parentElement;
+    btn.remove();
+    cell.style.display = '';
+    cell.style.alignItems = '';
+    cell.style.gap = '';
+  });
+}
+
+// ===== 初始化 =====
+buildInsertBars();
+</script>
+</body>
+</html>
