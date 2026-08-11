@@ -1721,34 +1721,6 @@
         }
       ],
       "answer": "A"
-    },
-    {
-      "num": 75,
-      "type": "single",
-      "content": "dfd",
-      "options": [
-        {
-          "letter": "A",
-          "text": "sdfds",
-          "correct": true
-        },
-        {
-          "letter": "B",
-          "text": "sdfddd",
-          "correct": false
-        },
-        {
-          "letter": "C",
-          "text": "dddsfw",
-          "correct": false
-        },
-        {
-          "letter": "D",
-          "text": "werggtgb",
-          "correct": false
-        }
-      ],
-      "answer": "A"
     }
   ]
 }
