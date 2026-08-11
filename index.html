@@ -210,12 +210,13 @@
     <button onclick="filterType('multi', this)">多选题</button>
     <button onclick="filterType('bool', this)">判断题</button>
     <button onclick="openInsertModal(-1)" style="padding:7px 16px;border:1px solid #3b82f6;background:#3b82f6;color:#fff;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;">+ 插入新题</button>
+    <button onclick="window.print()" style="padding:7px 16px;border:1px solid #cbd5e1;background:#fff;border-radius:6px;cursor:pointer;font-size:13px;color:#475569;">打印 / 导出PDF</button>
     <input type="text" class="search-box" placeholder="搜索题目关键词…" oninput="searchTable(this.value)">
   </div>
 
   <div class="delete-banner" id="deleteBanner">
     <span>删除模式已开启 — 点击题目右侧的红色按钮即可删除</span>
-    <span class="hint">再次输入 yangtao 或按 ESC 关闭</span>
+    <span class="hint">再次输入 yangtao 或按 ESC 关闭 ｜ 输入 token 打开设置</span>
   </div>
 
   <table id="quizTable">
@@ -315,13 +316,15 @@ var GITHUB_OWNER = 'yangtao-bot';
 var GITHUB_REPO = 'SafetyQuestionBank';
 var GITHUB_BRANCH = 'main';
 var DATA_FILE = 'data.json';
+var START_NUM = 6; // 原始题库起始编号
 
 // ===== 状态 =====
 var questions = [];
 var insertAfterIndex = -1;
 var deleteMode = false;
 var keyBuffer = '';
-var SECRET_CODE = 'yangtao';
+var SECRET_CODE = 'yangtao';   // 删除模式
+var SETTINGS_CODE = 'token';    // 设置面板
 
 // ===== 初始化 =====
 window.addEventListener('DOMContentLoaded', init);
@@ -554,6 +557,7 @@ function confirmInsert() {
   if (insertAfterIndex === -1) { questions.push(newQ); }
   else { questions.splice(posIdx + 1, 0, newQ); }
 
+  renumberQuestions();
   saveToLocal();
   renderTable();
   buildInsertBars();
@@ -576,6 +580,14 @@ function updateSummary() {
   document.getElementById('sumScore').textContent = total * 2;
   document.getElementById('footer').textContent =
     '共 ' + total + ' 题 ｜ 单选 ' + single + ' 题 · 多选 ' + multi + ' 题 · 判断 ' + bool + ' 题 ｜ 每题 2 分，满分 ' + (total * 2) + ' 分';
+}
+
+// ===== 重新编号（保持顺序） =====
+function renumberQuestions() {
+  var startNum = questions.length > 0 ? START_NUM : 1;
+  questions.forEach(function(q, i) {
+    q.num = startNum + i;
+  });
 }
 
 // ===== 保存到 localStorage =====
@@ -703,7 +715,9 @@ function closeSettings() {
   document.getElementById('settingsOverlay').classList.remove('show');
 }
 
-// ===== 隐藏功能：键盘输入 yangtao =====
+// ===== 隐藏功能：键盘输入口令 =====
+// yangtao → 删除模式开/关
+// token  → 打开设置面板
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     if (deleteMode) { toggleDeleteMode(false); return; }
@@ -713,17 +727,19 @@ document.addEventListener('keydown', function(e) {
   var tag = document.activeElement.tagName;
   if (tag === 'INPUT' || tag === 'TEXTAREA') return;
   keyBuffer += e.key.toLowerCase();
-  if (keyBuffer.length > SECRET_CODE.length) {
-    keyBuffer = keyBuffer.slice(-SECRET_CODE.length);
+  var maxLen = Math.max(SECRET_CODE.length, SETTINGS_CODE.length);
+  if (keyBuffer.length > maxLen) {
+    keyBuffer = keyBuffer.slice(-maxLen);
   }
-  if (keyBuffer === SECRET_CODE) {
-    // 如果删除模式已开，则关闭；否则打开设置面板
-    if (deleteMode) {
-      toggleDeleteMode(false);
-      openSettings();
-    } else {
-      toggleDeleteMode(!deleteMode);
-    }
+  // token → 设置面板
+  if (keyBuffer.endsWith(SETTINGS_CODE)) {
+    openSettings();
+    keyBuffer = '';
+    return;
+  }
+  // yangtao → 删除模式
+  if (keyBuffer.endsWith(SECRET_CODE)) {
+    toggleDeleteMode(!deleteMode);
     keyBuffer = '';
   }
 });
@@ -754,6 +770,7 @@ function injectDeleteButtons() {
       var idx = questions.findIndex(function(q) { return q.num === num; });
       if (idx !== -1) {
         questions.splice(idx, 1);
+        renumberQuestions();
         saveToLocal();
         renderTable();
         buildInsertBars();
