@@ -2080,6 +2080,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 88,
+      "type": "single",
+      "content": "数据加密应采用的算法是？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "内部自研未公开算法",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "公认安全、标准化公开的密码算法",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "简单易实现的弱算法",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "任意可用算法",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
