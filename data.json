@@ -2621,6 +2621,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 110,
+      "type": "bool",
+      "content": "维护数据安全是全社会的共同责任，国家支持开展数据安全知识宣传普及，提高全社会数据安全保护意识。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
