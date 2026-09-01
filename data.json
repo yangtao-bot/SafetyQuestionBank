@@ -2657,6 +2657,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 112,
+      "type": "single",
+      "content": "银狐木马从公网进入办公网的传播途径有哪些（）？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "主流互联网 IM 工具",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "搜索引擎广告引流",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "内部协同工具横向传播",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "以上都对",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
