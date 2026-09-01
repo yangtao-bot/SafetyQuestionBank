@@ -2192,6 +2192,29 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 92,
+      "type": "multi",
+      "content": "大数据供应链安全管控要求中，账号权限及访问控制管理坚持哪些原则？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "权限明确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "职责互斥",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "最小特权",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
