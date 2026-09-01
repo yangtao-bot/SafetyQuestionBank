@@ -2841,6 +2841,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 120,
+      "type": "bool",
+      "content": "就高不就低原则是指如果同一批数据中各属性或字段的分级不同，需要按照定级最高的属性或字段的级别一并实施安全管控。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
