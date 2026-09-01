@@ -2823,6 +2823,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 119,
+      "type": "bool",
+      "content": "业务负责人在开展网络安全风险整改时，无需进行自评估，只需直接反馈整改完成即可。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
