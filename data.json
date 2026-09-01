@@ -1782,6 +1782,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 77,
+      "type": "single",
+      "content": "针对特殊原因无法按时完成整改的报备流程（）",
+      "options": [
+        {
+          "letter": "A",
+          "text": "只需业务负责人同意即可延期",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "只需运维负责人同意即可延期",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "只需运维安全管理员同意即可延期",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "需漏洞归属部门领导同意后，方可以延期",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
