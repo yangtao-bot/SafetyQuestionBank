@@ -2108,6 +2108,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 89,
+      "type": "single",
+      "content": "当终端使用者为外部合作单位人员时，（）作为该终端安全的第一责任人，负责指导、监督外部合作单位人员在终端使用过程中严格遵守本办法各项管理要求。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "项目经理",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "项目总监",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "该人员所属项目的项目经理",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "部门责任人",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
