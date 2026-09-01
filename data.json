@@ -2485,6 +2485,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 103,
+      "type": "multi",
+      "content": "Flume组件的安全配置检查项目包括哪些？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "检查客户端服务端双向认证配置（ssl=true）",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "检查数据证书访问密码是否加密保存",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "检查运行Flume的账号是否为非root用户",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "检查并行计算个数",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
