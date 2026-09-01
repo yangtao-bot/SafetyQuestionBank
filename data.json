@@ -2243,6 +2243,34 @@
         }
       ],
       "answer": "A、B、D"
+    },
+    {
+      "num": 94,
+      "type": "multi",
+      "content": "邮件安全防护的正确做法包括：",
+      "options": [
+        {
+          "letter": "A",
+          "text": "警惕含有超链接附件或按钮的邮件不要点击下载",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "注意阅读发件邮箱全称而非仅看显示名",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "公私邮箱分开使用",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "谨慎使用自动回复功能",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
