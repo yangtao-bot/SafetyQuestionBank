@@ -2585,6 +2585,42 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 108,
+      "type": "bool",
+      "content": "当业务需求比较紧急时，可以通过外部云盘传递敏感生产资料。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "num": 109,
+      "type": "bool",
+      "content": "当业务需求比较紧急时，可以通过外部云盘传递敏感生产资料。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
