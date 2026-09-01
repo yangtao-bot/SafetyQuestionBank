@@ -1754,6 +1754,34 @@
         }
       ],
       "answer": "A、B、C、D、E"
+    },
+    {
+      "num": 76,
+      "type": "single",
+      "content": "个人信息处理者处理不满十四周岁未成年人个人信息的，应当取得谁的同意？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "未成年人本人同意即可",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "学校或老师同意",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "未成年人父母或其他监护人同意",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "未成年人及其同学同意",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
