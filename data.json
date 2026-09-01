@@ -2971,6 +2971,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 125,
+      "type": "bool",
+      "content": "弱口令类安全问题是指主机、系统、应用等设置的认证口令不满足《中移信息技术有限公司账号口令管理办法》中口令的设置规则。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
