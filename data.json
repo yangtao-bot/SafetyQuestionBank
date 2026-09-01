@@ -2271,6 +2271,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 95,
+      "type": "multi",
+      "content": "个人信息主体的权利包括：",
+      "options": [
+        {
+          "letter": "A",
+          "text": "知情权和决定权",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "查阅权和复制权",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "更正权和删除权",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "撤回同意权",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
