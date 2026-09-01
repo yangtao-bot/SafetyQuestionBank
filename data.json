@@ -2434,6 +2434,29 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 101,
+      "type": "multi",
+      "content": "接口机数据采集与外发可采用以下哪种安全传输方式？（ABC）",
+      "options": [
+        {
+          "letter": "A",
+          "text": "SFTP",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "https协议",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "承载网",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
