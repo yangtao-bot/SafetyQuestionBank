@@ -2607,24 +2607,6 @@
     {
       "num": 109,
       "type": "bool",
-      "content": "当业务需求比较紧急时，可以通过外部云盘传递敏感生产资料。",
-      "options": [
-        {
-          "letter": "A",
-          "text": "正确",
-          "correct": false
-        },
-        {
-          "letter": "B",
-          "text": "错误",
-          "correct": true
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "num": 110,
-      "type": "bool",
       "content": "维护数据安全是全社会的共同责任，国家支持开展数据安全知识宣传普及，提高全社会数据安全保护意识。",
       "options": [
         {
@@ -2641,7 +2623,7 @@
       "answer": "A"
     },
     {
-      "num": 111,
+      "num": 110,
       "type": "bool",
       "content": "安全接口人仅需负责接收风险，无需跟进业务负责人的整改进度或审核反馈材料。",
       "options": [
@@ -2659,7 +2641,7 @@
       "answer": "B"
     },
     {
-      "num": 112,
+      "num": 111,
       "type": "single",
       "content": "银狐木马从公网进入办公网的传播途径有哪些（）？",
       "options": [
@@ -2687,7 +2669,7 @@
       "answer": "D"
     },
     {
-      "num": 113,
+      "num": 112,
       "type": "multi",
       "content": "根据《个人信息保护法》，下列哪些属于敏感个人信息？",
       "options": [
@@ -2715,7 +2697,7 @@
       "answer": "A、B、C、D"
     },
     {
-      "num": 114,
+      "num": 113,
       "type": "multi",
       "content": "钓鱼邮件的常见特征包括？",
       "options": [
@@ -2743,7 +2725,7 @@
       "answer": "A、B、C、D"
     },
     {
-      "num": 115,
+      "num": 114,
       "type": "multi",
       "content": "下列行为属于严禁/禁止的有（）？",
       "options": [
@@ -2771,7 +2753,7 @@
       "answer": "A、B、C"
     },
     {
-      "num": 116,
+      "num": 115,
       "type": "bool",
       "content": "个人撤回对个人信息处理的同意，会使撤回前基于其同意已进行的个人信息处理活动失去效力。",
       "options": [
@@ -2789,7 +2771,7 @@
       "answer": "B"
     },
     {
-      "num": 117,
+      "num": 116,
       "type": "bool",
       "content": "操作敏感数据时，金库理由中写的查询操作，实际操作insert、update、drop等命令是合规的。",
       "options": [
@@ -2807,7 +2789,7 @@
       "answer": "B"
     },
     {
-      "num": 118,
+      "num": 117,
       "type": "bool",
       "content": "业务负责人在开展网络安全风险整改时，无需进行自评估，只需直接反馈整改完成即可。",
       "options": [
@@ -2825,7 +2807,7 @@
       "answer": "B"
     },
     {
-      "num": 119,
+      "num": 118,
       "type": "bool",
       "content": "就高不就低原则是指如果同一批数据中各属性或字段的分级不同，需要按照定级最高的属性或字段的级别一并实施安全管控。",
       "options": [
@@ -2843,7 +2825,7 @@
       "answer": "A"
     },
     {
-      "num": 120,
+      "num": 119,
       "type": "multi",
       "content": "根据数据在经济社会发展中的重要程度，我国对数据实行分类分级保护，一般可分为？",
       "options": [
@@ -2871,7 +2853,7 @@
       "answer": "A、B、C"
     },
     {
-      "num": 121,
+      "num": 120,
       "type": "multi",
       "content": "《个人信息保护法》规定，处理敏感个人信息应满足的要求包括？",
       "options": [
@@ -2899,7 +2881,7 @@
       "answer": "A、B、C、D"
     },
     {
-      "num": 122,
+      "num": 121,
       "type": "single",
       "content": "加密数据销毁时，以下说法错误的是？",
       "options": [
@@ -2927,7 +2909,7 @@
       "answer": "B"
     },
     {
-      "num": 123,
+      "num": 122,
       "type": "single",
       "content": "账号口令长度不得少于多少位？",
       "options": [
@@ -2955,7 +2937,7 @@
       "answer": "B"
     },
     {
-      "num": 124,
+      "num": 123,
       "type": "bool",
       "content": "弱口令类安全问题是指主机、系统、应用等设置的认证口令不满足《中移信息技术有限公司账号口令管理办法》中口令的设置规则。",
       "options": [
