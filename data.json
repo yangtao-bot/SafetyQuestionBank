@@ -2549,6 +2549,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 106,
+      "type": "bool",
+      "content": "发现不明身份人员在办公区活动时可以置之不理反正有保安巡逻。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
