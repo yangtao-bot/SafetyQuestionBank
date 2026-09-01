@@ -1810,6 +1810,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 78,
+      "type": "single",
+      "content": "根据个保法第十三条，下列哪种情形处理个人信息仍需取得个人同意？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "未取得个人同意且不属于法定例外情形",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "为履行法定职责所必需",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "为应对突发公共卫生事件所必需",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "在合理范围内处理个人自行公开的信息",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
