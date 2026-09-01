@@ -2164,6 +2164,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 91,
+      "type": "single",
+      "content": "合作伙伴生产终端应安装哪些防护软件。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "奇安信",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "奇安信和天空卫士",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "北信源",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "北信源和天空卫士",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
