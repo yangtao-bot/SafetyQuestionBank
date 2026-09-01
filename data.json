@@ -2685,6 +2685,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 113,
+      "type": "multi",
+      "content": "根据《个人信息保护法》，下列哪些属于敏感个人信息？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "生物识别、宗教信仰",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "特定身份、医疗健康",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "金融账户、行踪轨迹",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "不满十四周岁未成年人的个人信息",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
