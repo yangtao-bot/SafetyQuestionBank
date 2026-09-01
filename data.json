@@ -2029,6 +2029,29 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 86,
+      "type": "single",
+      "content": "省端接口机、集团接口机临时目录（data目录、存取目录等）文件均需即用即删，使用结束后临时存储周期不可超过多久？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "4小时",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "8小时",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "24小时",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
