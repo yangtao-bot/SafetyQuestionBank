@@ -2215,6 +2215,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 93,
+      "type": "multi",
+      "content": "关于HDFS组件的安全传输协议配置，以下哪些说法是正确的？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "dfs、http、policy的值应配置为HTTPS_ONLY",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "hadoop、rpc、protection的值应配置为authentication/privacy",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "默认情况下HC环境已开启HTTPS",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "修改配置后通常需要重启服务生效",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、D"
     }
   ]
 }
