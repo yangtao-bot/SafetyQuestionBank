@@ -1950,6 +1950,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 83,
+      "type": "single",
+      "content": "在进行SMC安全三同步评审提单前，需要在大数据内部走（）流程。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "梧桐大数据安全三同步工单",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "梧桐大数据上线检查工单",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "梧桐大数据变更检查工单",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "梧桐大数据互联网暴露面检查工单",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
