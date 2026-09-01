@@ -2327,6 +2327,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 97,
+      "type": "multi",
+      "content": "涉及数据供应链业务的中心应负责形成数据供应链台账，需记录以下哪些信息？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "数据名称、数据数量",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "类别、级别、",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "处理方式、目的",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "范围、合作方",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
