@@ -2299,6 +2299,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 96,
+      "type": "multi",
+      "content": "大数据分公司各中心在大数据供应链安全管控过程中应遵循用户知情同意原则、公开透明原则、可追溯原则基础上，还须遵循哪些实施原则？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "合法合规原则",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "权责一致原则",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "目的明确原则",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "安全可用原则",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
