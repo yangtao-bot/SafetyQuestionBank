@@ -2406,6 +2406,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 100,
+      "type": "multi",
+      "content": "物理安全管理的正确做法包括：",
+      "options": [
+        {
+          "letter": "A",
+          "text": "下班后桌面不留移动硬盘、优盘等存储设备",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "长久离开工位及时锁定屏幕",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "会议采用内部云视讯，外部会议注意防泄密",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "允许不明身份人员远程控制设备",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
