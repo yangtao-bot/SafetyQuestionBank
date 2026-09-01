@@ -1866,6 +1866,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 80,
+      "type": "single",
+      "content": "关键信息基础设施运营者应当自行或者委托网络安全服务机构对关键信息基础设施至少多久进行一次网络安全检测和风险评估？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "每半年",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "每年",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "每两年",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "每三年",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
