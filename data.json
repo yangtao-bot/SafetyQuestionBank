@@ -2769,6 +2769,42 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 116,
+      "type": "bool",
+      "content": "个人撤回对个人信息处理的同意，会使撤回前基于其同意已进行的个人信息处理活动失去效力。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "num": 117,
+      "type": "bool",
+      "content": "个人撤回对个人信息处理的同意，会使撤回前基于其同意已进行的个人信息处理活动失去效力。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
