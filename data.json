@@ -2531,6 +2531,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 105,
+      "type": "bool",
+      "content": "为他人实施电信网络诈骗活动提供帮助构成犯罪的依法追究刑事责任；尚不够刑事处罚的，给予治安管理处罚。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
