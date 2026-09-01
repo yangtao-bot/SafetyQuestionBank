@@ -2639,6 +2639,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 111,
+      "type": "bool",
+      "content": "安全接口人仅需负责接收风险，无需跟进业务负责人的整改进度或审核反馈材料。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
