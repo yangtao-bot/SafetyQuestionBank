@@ -2805,6 +2805,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 118,
+      "type": "bool",
+      "content": "操作敏感数据时，金库理由中写的查询操作，实际操作insert、update、drop等命令是合规的。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
