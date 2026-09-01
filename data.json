@@ -2953,6 +2953,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 124,
+      "type": "single",
+      "content": "test",
+      "options": [
+        {
+          "letter": "A",
+          "text": "热点",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "呃呃呃",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "我问问",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "电饭锅",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
