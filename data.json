@@ -2567,6 +2567,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 107,
+      "type": "bool",
+      "content": "可以将账号密码写在便签纸上贴在显示器旁边以防遗忘。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
