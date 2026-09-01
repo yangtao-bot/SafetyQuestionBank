@@ -2859,6 +2859,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 121,
+      "type": "multi",
+      "content": "根据数据在经济社会发展中的重要程度，我国对数据实行分类分级保护，一般可分为？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "一般数据",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "重要数据",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "核心数据",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "临时数据",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
