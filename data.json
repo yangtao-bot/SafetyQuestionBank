@@ -2741,6 +2741,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 115,
+      "type": "multi",
+      "content": "下列行为属于严禁/禁止的有（）？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "违规复制、存储、传播重要及涉密数据",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "明文存储密码",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "私自安装远程软件",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "发生泄密后及时上报",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
