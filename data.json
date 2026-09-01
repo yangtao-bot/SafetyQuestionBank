@@ -1922,6 +1922,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 82,
+      "type": "single",
+      "content": "《关键信息基础设施安全保护条例》自何时起施行？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "2021年4月27日",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "2021年7月30日",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "2021年9月1日",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "2021年11月1日",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
