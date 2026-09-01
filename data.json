@@ -2887,6 +2887,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 122,
+      "type": "multi",
+      "content": "《个人信息保护法》规定，处理敏感个人信息应满足的要求包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "具有特定的目的和充分的必要性",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "采取严格保护措施",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "取得个人的单独同意",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "事前进行个人信息保护影响评估",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
