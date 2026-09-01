@@ -1838,6 +1838,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 79,
+      "type": "single",
+      "content": "依据数据分类分级保护制度，国家将数据分为哪几类？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "公开数据、内部数据、秘密数据",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "一般数据、敏感数据、机密数据",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "个人数据、企业数据、政务数据",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "一般数据、重要数据、核心数据",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
