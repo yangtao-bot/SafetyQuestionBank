@@ -2457,6 +2457,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 102,
+      "type": "multi",
+      "content": "《反电信网络诈骗法》第三十一条规定，任何单位和个人不得非法买卖、出租、出借的有？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "电话卡、物联网卡",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "电信线路、短信端口",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "银行账户、支付账户",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "互联网账号",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
