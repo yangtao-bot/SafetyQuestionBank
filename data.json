@@ -2001,6 +2001,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 85,
+      "type": "single",
+      "content": "关于可疑邮件处理要求，下列说法正确的是（）。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "可疑邮件直接删除即可",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "对可疑邮件进行“一键上报”",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "可疑邮件可以先点击链接查看再判断",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "收到可疑邮件无需理会",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
