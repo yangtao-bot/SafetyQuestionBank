@@ -1894,6 +1894,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 81,
+      "type": "single",
+      "content": "国家实行网络安全什么制度？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "网络安全审查制度",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "网络安全监测制度",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "网络安全等级保护制度",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "网络安全认证制度",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
