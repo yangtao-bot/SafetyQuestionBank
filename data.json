@@ -2355,6 +2355,29 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 98,
+      "type": "multi",
+      "content": "大数据供应链安全管控要求中，对于一般数据的销毁工单至少需要包含哪些信息？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "销毁对象",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "销毁原因",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "数据销毁策略",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
