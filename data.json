@@ -2713,6 +2713,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 114,
+      "type": "multi",
+      "content": "钓鱼邮件的常见特征包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "冒充官方、领导或同事身份",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "携带可疑附件并引导点击",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "发件人显示名称可被编辑伪造",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "邮件形式、图片、风格可被模仿",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
