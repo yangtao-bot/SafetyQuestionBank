@@ -2136,6 +2136,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 90,
+      "type": "single",
+      "content": "对于基线分析发现的安全基线类安全问题，原则上应当在问题发现后多少日内完成整改并反馈？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "5日",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "10日",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "15日",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "20日",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
