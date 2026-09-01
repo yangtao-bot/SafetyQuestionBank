@@ -2943,6 +2943,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 124,
+      "type": "single",
+      "content": "账号口令长度不得少于多少位？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "6位",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "8位",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "10位",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "12位",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
