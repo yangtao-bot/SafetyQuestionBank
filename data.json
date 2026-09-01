@@ -2915,6 +2915,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 123,
+      "type": "single",
+      "content": "加密数据销毁时，以下说法错误的是？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "超过存储周期系统自动清理",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "销毁日志无需保留",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "人为销毁需纳入审计",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "敏感信息需专人彻底删除",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
