@@ -2052,6 +2052,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 87,
+      "type": "single",
+      "content": "Ranger组件中，用户同步配置ranger、usersync、enabled应配置为以下哪项以确保用户同步工作正常？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "false",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "true",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "null",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Enabled",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
