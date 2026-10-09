@@ -3373,6 +3373,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 139,
+      "type": "multi",
+      "content": "以下哪些场景属于数据泄露（丢失）场景？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "内部员工或第三方人员利用职务之便窃取所接触到的公司数据",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "第三方单位将所接触到的公司数据，违规转售、披露、共享给其他非授权单位时",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "发生网络攻击事件导致数据泄露",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "内部员工或第三方人员违规或误操作，造成数据被篡改",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
