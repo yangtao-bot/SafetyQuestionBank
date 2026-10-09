@@ -3947,6 +3947,42 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 162,
+      "type": "bool",
+      "content": "合作伙伴可以直接从4A系统后台下载、导出业务数据。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "num": 163,
+      "type": "bool",
+      "content": "合作伙伴可以直接从4A系统后台下载、导出业务数据。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
