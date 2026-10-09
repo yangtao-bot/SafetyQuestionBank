@@ -3839,6 +3839,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 156,
+      "type": "bool",
+      "content": "涉及互联网暴露面系统应使用https协议而非http。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
