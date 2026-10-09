@@ -3149,6 +3149,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 131,
+      "type": "single",
+      "content": "按照健壮口令规则，账号口令应在多少天内至少更换一次？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "30天",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "60天",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "90天",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "180天",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
