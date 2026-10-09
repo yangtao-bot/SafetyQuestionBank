@@ -4210,6 +4210,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 173,
+      "type": "single",
+      "content": "十五五时期，国家明确将网络安全、数据安全和下列哪一项列为三大核心安全领域?",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、物理安全",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "B、设备安全",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "C、舆论安全",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "D、人工智能安全",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
