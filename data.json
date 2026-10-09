@@ -3793,6 +3793,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 154,
+      "type": "multi",
+      "content": "《网络安全法》对于个人（公民）的两大焦点包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、对公民个人信息的保护",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、禁止利用网络从事与违法犯罪相关的活动",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、重要数据出境安全评估",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "D、网络安全等级保护定级",
+          "correct": false
+        }
+      ],
+      "answer": "A、B"
     }
   ]
 }
