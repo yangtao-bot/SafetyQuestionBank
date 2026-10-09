@@ -3653,6 +3653,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 149,
+      "type": "multi",
+      "content": "根据计算机使用安全要求，下列做法正确的有？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、安装并定期更新防病毒软件，安装系统最新补丁和升级包",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、安装更新终端安全管理软件、DLP软件及SDP客户端",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、终端禁止私自搭建WIFI热点",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、严禁使用双网卡连通公网与生产网",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
