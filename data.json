@@ -3597,6 +3597,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 147,
+      "type": "single",
+      "content": "当前大数据安全突出风险痛点主要包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、数据管理不规范",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、技术能力薄弱",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、人员合规意识不足",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、跨境与AI新型风险叠加",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
