@@ -3681,6 +3681,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 150,
+      "type": "multi",
+      "content": "防范钓鱼邮件的正确做法包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、警惕含超链接、附件或按钮的邮件，不轻易点击或下载",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、不轻信发件人显示名，注意阅读发件邮箱全称",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、设置复杂的邮箱密码并定期更新",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、用办公邮箱处理私事，方便集中管理",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
