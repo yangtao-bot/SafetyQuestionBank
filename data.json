@@ -4039,6 +4039,29 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 166,
+      "type": "multi",
+      "content": "接口机上的数据均需严格按照安全管理要求采用什么样的密码算法进行加密存储。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、公认安全的",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、标准化公开的",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、便于解密的",
+          "correct": false
+        }
+      ],
+      "answer": "A、B"
     }
   ]
 }
