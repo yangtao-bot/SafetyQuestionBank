@@ -3429,6 +3429,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 141,
+      "type": "single",
+      "content": "《数据安全法》所称\"数据处理\"包括下列哪些活动？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "数据的收集、存储",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "数据的使用、加工",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "数据的传输、提供",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "数据的公开",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
