@@ -4164,6 +4164,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 171,
+      "type": "bool",
+      "content": "关系国家安全、国民经济命脉、重要民生、重大公共利益等数据属于国家核心数据，实行更加严格的管理制度。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
