@@ -3345,6 +3345,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 138,
+      "type": "single",
+      "content": "《网络安全法》规定，网络产品、服务的提供者发现其网络产品、服务存在安全缺陷、漏洞等风险时，应当？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "立即采取补救措施，按照规定及时告知用户并向有关主管部门报告",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "待产品下线后再统一处理",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "自行修复，无需告知用户",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "仅在用户投诉后处理",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
