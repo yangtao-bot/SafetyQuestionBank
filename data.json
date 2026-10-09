@@ -3037,6 +3037,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 127,
+      "type": "single",
+      "content": "《数据安全法》建立的数据分类分级保护制度，其分级的主要依据是？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "数据的存储位置和介质",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "数据在经济社会发展中的重要程度，以及遭到篡改、破坏、泄露或非法获取、非法利用后造成的危害程度",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "数据处理者的企业规模",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "数据的存续时间长短",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
