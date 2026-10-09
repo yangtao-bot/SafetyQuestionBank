@@ -3205,6 +3205,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 133,
+      "type": "single",
+      "content": "《网络安全法》规定，关键信息基础设施的运营者应当自行或者委托网络安全服务机构对其网络的安全性和可能存在的风险，多长时间至少进行一次检测评估？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "每季度",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "每半年",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "每年",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "每两年",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
