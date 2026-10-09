@@ -3929,6 +3929,24 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 161,
+      "type": "bool",
+      "content": "为方便办公，终端可以使用双网卡同时连通公网与生产网。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
