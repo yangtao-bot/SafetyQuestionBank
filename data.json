@@ -3093,6 +3093,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 129,
+      "type": "single",
+      "content": "《个人信息保护法》规定，个人信息的保存期限应当为？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "永久保存",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "不少于三年",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "实现处理目的所必要的最短时间",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "由处理者自行决定",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
