@@ -3911,6 +3911,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 160,
+      "type": "bool",
+      "content": "\"Huawei@123\"属于符合健壮口令规则的强口令，可以放心使用。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
