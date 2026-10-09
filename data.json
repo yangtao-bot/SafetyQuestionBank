@@ -3485,6 +3485,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 143,
+      "type": "multi",
+      "content": "推动数据要素市场化改革的四大基础制度包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "数据产权",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "流通利用",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "收益分配",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "安全治理",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
