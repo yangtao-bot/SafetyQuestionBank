@@ -3875,6 +3875,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 158,
+      "type": "bool",
+      "content": "维护数据安全，应当坚持总体国家安全观，建立健全数据安全治理体系。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
