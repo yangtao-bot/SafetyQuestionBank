@@ -3765,6 +3765,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 153,
+      "type": "multi",
+      "content": "《数据安全法》规定的数据安全制度包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、数据分类分级保护制度",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、数据安全风险评估、监测预警制度",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、数据安全应急处置机制",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、数据安全审查制度",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
