@@ -4062,6 +4062,34 @@
         }
       ],
       "answer": "A、B"
+    },
+    {
+      "num": 167,
+      "type": "multi",
+      "content": "下列属于弱口令常见特征的有？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、口令长度少于8个字符",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、使用计算机名字、术语、公司名字、地名等",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、使用生日、个人信息、家庭地址、电话等",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、采用键盘顺序或字母表顺序，如qwer、123456等",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
