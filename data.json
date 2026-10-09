@@ -3009,6 +3009,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 126,
+      "type": "single",
+      "content": "对于漏洞级别为“高危”及以上的系统类漏洞，原则上应在漏洞发现后多少日内采取修补或防范措施？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "3日",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "5日",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "10日",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "20日",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
