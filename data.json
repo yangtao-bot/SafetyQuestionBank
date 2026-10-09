@@ -3401,6 +3401,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 140,
+      "type": "single",
+      "content": "以下哪些可用于加强敏感数据传输接口安全管控？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "对外发接口的调用实施流量监测",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "对外发接口的调用实施接入鉴权",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "留存内外部数据接口的访问日志",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "定期对各类接口进行清查，对不符合要求的数据接口立刻予以关停",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
