@@ -3569,6 +3569,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 146,
+      "type": "single",
+      "content": "数据安全\"五位一体\"协同共治格局的主体包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、政府监管、企业主责",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、行业自律",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、社会监督、技术支撑",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、媒体审判",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
