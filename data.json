@@ -3513,6 +3513,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 144,
+      "type": "multi",
+      "content": "十五五时期\"一体五位\"推进的体系建设包括下列哪些？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、网络、标识",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、平台",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、数据、安全",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、舆论引导",
+          "correct": false
+        }
+      ],
+      "answer": "A、B、C"
     }
   ]
 }
