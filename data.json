@@ -3317,6 +3317,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 137,
+      "type": "single",
+      "content": "《个人信息保护法》规定的个人信息保护影响评估报告和处理情况记录，应当至少保存多长时间？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "一年",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "二年",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "三年",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "五年",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
