@@ -3709,6 +3709,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 151,
+      "type": "multi",
+      "content": "物理安全防范要求包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、及时取走/销毁打印文件，长久离开工位请及时锁定屏幕",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、不帮非本项目组人员接入办公区，发现不明身份人员及时报告",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、不私自在办公网搭建无线热点，办公终端不同时跨接内网与公网",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、不允许来路不明人员远程控制公司各类设备或执行其告知的指令",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
