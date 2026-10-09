@@ -4182,6 +4182,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 172,
+      "type": "single",
+      "content": "暴露面资产备案的原则？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、只需要完成SMC平台上备案",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "B、只需要完成集团信息安全合规平台上备案",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "C、只需要完成定级备案平台上备案",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "D、需要同时在SMC、集团信息安全合规平台、定级备案系统上备案",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
