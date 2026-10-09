@@ -3857,6 +3857,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 157,
+      "type": "bool",
+      "content": "互联网暴露面应用区域是指：提供公网访问的数据应用系统，包括：部署于DMZ域中提供内网服务代理转发功能，以及部署于CORE域提供实际业务服务的部分。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
