@@ -4118,6 +4118,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 169,
+      "type": "multi",
+      "content": "十五五时期大数据安全治理需遵循的四大核心理论包括？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、数据安全国家安全观",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、数据要素合规治理",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、以数据为中心的防护",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、风险动态防控",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
