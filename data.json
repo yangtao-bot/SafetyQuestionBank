@@ -3821,6 +3821,24 @@
         }
       ],
       "answer": "A、B"
+    },
+    {
+      "num": 155,
+      "type": "bool",
+      "content": "一般数据是指其他未纳入重要数据、核心数据目录的外部数据。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
