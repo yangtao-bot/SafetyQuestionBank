@@ -3893,6 +3893,24 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 159,
+      "type": "bool",
+      "content": "健壮口令应至少由大写字母、小写字母、数字以及特殊符号中的至少三种字符组成。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
