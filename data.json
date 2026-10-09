@@ -4238,6 +4238,34 @@
         }
       ],
       "answer": "D"
+    },
+    {
+      "num": 174,
+      "type": "single",
+      "content": "根据《数据安全法》，关系国家安全、国民经济命脉、重要民生、重大公共利益等数据属于？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "一般数据",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "重要数据",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "国家核心数据",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "公开数据",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
