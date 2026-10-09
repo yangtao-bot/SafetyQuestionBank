@@ -2953,6 +2953,34 @@
         }
       ],
       "answer": "A"
+    },
+    {
+      "num": 124,
+      "type": "single",
+      "content": "根据数据安全意识要求，操作敏感数据时需要触发的管控机制是？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "双因子认证",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "金库",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "防火墙",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "VPN",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
