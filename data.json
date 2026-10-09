@@ -4146,6 +4146,24 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 170,
+      "type": "bool",
+      "content": "电子邮件中发件人的\"显示名\"是可以被编辑修改和伪造的。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
