@@ -3983,6 +3983,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 164,
+      "type": "single",
+      "content": "根据《个人信息保护法》，处理不满多少周岁未成年人的个人信息，应当取得其父母或者其他监护人的同意？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、十二周岁",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "B、十四周岁",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、十六周岁",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "D、十八周岁",
+          "correct": false
+        }
+      ],
+      "answer": "B"
     }
   ]
 }
