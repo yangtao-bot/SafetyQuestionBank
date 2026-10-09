@@ -3233,6 +3233,34 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 134,
+      "type": "single",
+      "content": "《数据安全法》规定，维护数据安全，应当坚持？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "总体国家安全观",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "技术中立优先原则",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "发展绝对优先原则",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "属地管理原则",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
