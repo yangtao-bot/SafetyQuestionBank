@@ -4011,6 +4011,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 165,
+      "type": "single",
+      "content": "《个人信息保护法》规定，下列哪一项不属于敏感个人信息？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、生物识别信息",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "B、医疗健康信息",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "C、行踪轨迹信息",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "D、企业工商注册公开信息",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
