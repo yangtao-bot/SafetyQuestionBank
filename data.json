@@ -3541,6 +3541,34 @@
         }
       ],
       "answer": "A、B、C"
+    },
+    {
+      "num": 145,
+      "type": "multi",
+      "content": "数据全生命周期管控通常包括下列哪些环节？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、采集、存储",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、传输",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、使用",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、销毁",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
