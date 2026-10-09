@@ -3737,6 +3737,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 152,
+      "type": "multi",
+      "content": "《个人信息保护法》规定，下列哪些情形个人信息处理者应当事前进行个人信息保护影响评估？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、处理敏感个人信息",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、利用个人信息进行自动化决策",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、委托处理个人信息、向其他处理者提供个人信息、公开个人信息",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、向境外提供个人信息",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
