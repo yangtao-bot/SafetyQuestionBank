@@ -3625,6 +3625,34 @@
         }
       ],
       "answer": "A、B、C、D"
+    },
+    {
+      "num": 148,
+      "type": "multi",
+      "content": "根据账号安全要求，下列做法正确的有？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A、妥善保管自己的所有账号，不得随意泄露",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "B、不得私下互相转让、借用系统账号",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "C、工作岗位调动或离职时，应主动提出注销账号的申请",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D、严禁私自从资源侧（不通过4A管理平台）创建账号",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
     }
   ]
 }
