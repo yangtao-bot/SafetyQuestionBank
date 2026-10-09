@@ -2981,6 +2981,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 125,
+      "type": "single",
+      "content": "涉及重要数据、核心数据，对国家安全、社会秩序、经济建设和公众利益构成特别严重威胁的数据安全事件，属于哪个安全级别事件？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "一般数据安全事件（四级）",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "较大数据安全事件（三级）",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "重大数据安全事件（二级）",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "特别重大数据安全事件（一级）",
+          "correct": true
+        }
+      ],
+      "answer": "D"
     }
   ]
 }
