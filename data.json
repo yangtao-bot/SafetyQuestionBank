@@ -4266,6 +4266,88 @@
         }
       ],
       "answer": "C"
+    },
+    {
+      "num": 175,
+      "type": "multi",
+      "content": "根据数据安全要求，下列做法正确的有？",
+      "options": [
+        {
+          "letter": "A",
+          "text": "严禁合作伙伴从4A系统后台下载导出任何数据",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "操作敏感数据时需触发金库并如实填写金库理由，且理由须与实际操作命令相符",
+          "correct": true
+        },
+        {
+          "letter": "C",
+          "text": "对涉及个人信息的敏感数据必须进行加密存储",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "全量合作伙伴、自有涉敏人员须通过云桌面访问4A系统",
+          "correct": true
+        }
+      ],
+      "answer": "A、B、C、D"
+    },
+    {
+      "num": 176,
+      "type": "bool",
+      "content": "根据《个人信息保护法》，处理不满十四周岁未成年人个人信息，取得未成年人本人同意即可。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": true
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "num": 177,
+      "type": "bool",
+      "content": "互联网暴露面应具有双因素认证能力，至少包含一种强认证措施；或具备SIM动态认证能力。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "num": 178,
+      "type": "bool",
+      "content": "互联网暴露面应具有双因素认证能力，至少包含一种强认证措施；或具备SIM动态认证能力。",
+      "options": [
+        {
+          "letter": "A",
+          "text": "正确",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "错误",
+          "correct": false
+        }
+      ],
+      "answer": "A"
     }
   ]
 }
