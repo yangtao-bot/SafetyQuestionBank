@@ -4398,30 +4398,30 @@
     {
       "num": 181,
       "type": "single",
-      "content": "账号口令需要定期更换，更换周期最长为（）",
+      "content": "根据口令复杂度要求，口令长度至少应为多少位？",
       "options": [
         {
           "letter": "A",
-          "text": "A.30天",
+          "text": "A、6位",
           "correct": false
         },
         {
           "letter": "B",
-          "text": "B.60天",
-          "correct": false
-        },
-        {
-          "letter": "C",
-          "text": "C.90天",
+          "text": "B、8位",
           "correct": true
         },
         {
+          "letter": "C",
+          "text": "C、10位",
+          "correct": false
+        },
+        {
           "letter": "D",
-          "text": "D.120天",
+          "text": "D、12位",
           "correct": false
         }
       ],
-      "answer": "C"
+      "answer": "B"
     }
   ]
 }
