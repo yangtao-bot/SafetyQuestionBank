@@ -4422,6 +4422,34 @@
         }
       ],
       "answer": "B"
+    },
+    {
+      "num": 182,
+      "type": "single",
+      "content": "账号口令需要定期更换，更换周期最长为（）",
+      "options": [
+        {
+          "letter": "A",
+          "text": "A.30天",
+          "correct": false
+        },
+        {
+          "letter": "B",
+          "text": "B.60天",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "C.90天",
+          "correct": true
+        },
+        {
+          "letter": "D",
+          "text": "D.120天",
+          "correct": false
+        }
+      ],
+      "answer": "C"
     }
   ]
 }
