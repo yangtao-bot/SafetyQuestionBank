@@ -4394,34 +4394,6 @@
         }
       ],
       "answer": "A、B、C、D"
-    },
-    {
-      "num": 181,
-      "type": "single",
-      "content": "dddd",
-      "options": [
-        {
-          "letter": "A",
-          "text": "ddd",
-          "correct": true
-        },
-        {
-          "letter": "B",
-          "text": "ddd",
-          "correct": false
-        },
-        {
-          "letter": "C",
-          "text": "aa",
-          "correct": false
-        },
-        {
-          "letter": "D",
-          "text": "asas",
-          "correct": false
-        }
-      ],
-      "answer": "A"
     }
   ]
 }
